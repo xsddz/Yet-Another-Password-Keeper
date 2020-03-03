@@ -5,9 +5,9 @@ function createWindow() {
     // so this method will always return granted. macOS 10.14 Mojave or higher 
     // requires consent for microphone and camera access. macOS 10.15 Catalina 
     // or higher requires consent for screen access.
-    console.log("=======getMediaAccessStatus(camera):" + systemPreferences.getMediaAccessStatus("camera"))
-    console.log("=======getMediaAccessStatus(screen):" + systemPreferences.getMediaAccessStatus("screen"))
-    
+    console.log("=======getMediaAccessStatus(camera): " + systemPreferences.getMediaAccessStatus("camera"))
+    console.log("=======getMediaAccessStatus(screen): " + systemPreferences.getMediaAccessStatus("screen"))
+
     // 创建浏览器窗口
     const mainWindow = new BrowserWindow({
         width: 800,
