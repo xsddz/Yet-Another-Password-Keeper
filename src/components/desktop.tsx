@@ -1,25 +1,23 @@
 import * as React from 'react';
-import { useRef, useEffect } from 'react';
 import { useUserMedia } from './useUserMedia';
 
+const { desktopCapturer } = require('electron')
 
 export default function Desktop() {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const { desktopCapturer } = require('electron')
+    const videoRef = React.useRef<HTMLVideoElement>(null);
 
-    console.log("==========before")
-    desktopCapturer.getSources({ types: ['screen'] }, (error, sources) => {
-        console.log("==========in")
-        if (error) throw error
-        for (let i = 0; i < sources.length; ++i) {
-            console.log(sources[i].name)
-            if (sources[i].name === 'Electron') {
+    console.log("==========before desktopCapturer.getSources")
+    desktopCapturer.getSources({ types: ['window', 'screen'] }).then(async sources => {
+        console.log("==========in desktopCapturer.getSources")
+        for (const source of sources) {
+            console.log(source)
+            if (source.name === 'Electron') {
                 const mediaStream = useUserMedia({
                     audio: false,
                     video: {
                         mandatory: {
                             chromeMediaSource: 'desktop',
-                            chromeMediaSourceId: sources[i].id,
+                            chromeMediaSourceId: source.id,
                             minWidth: 1280,
                             maxWidth: 1280,
                             minHeight: 720,
@@ -27,6 +25,7 @@ export default function Desktop() {
                         }
                     }
                 });
+
                 if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
                     videoRef.current.srcObject = mediaStream;
                 }
@@ -37,7 +36,7 @@ export default function Desktop() {
     })
 
     return (
-        <div className="desktop">
+        <div className="video-desktop">
             <video ref={videoRef} controls autoPlay playsInline muted />
         </div>
     )

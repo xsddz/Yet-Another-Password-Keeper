@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRef, useState } from 'react';
 import { useUserMedia } from './useUserMedia';
 
 const CAPTURE_OPTIONS = {
@@ -8,7 +7,7 @@ const CAPTURE_OPTIONS = {
 };
 
 export default function Camera() {
-    const videoRef = useRef<HTMLVideoElement>(null);
+    const videoRef = React.useRef<HTMLVideoElement>(null);
     const mediaStream = useUserMedia(CAPTURE_OPTIONS);
 
     if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
@@ -20,7 +19,7 @@ export default function Camera() {
     }
 
     return (
-        <div className="camera">
+        <div className="video-camera">
             <video ref={videoRef} onCanPlay={handleCanPlay} autoPlay playsInline muted />
         </div>
     );
