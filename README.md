@@ -32,6 +32,33 @@ $ npm install
 $ npm start
 ```
 
+目录结构如下：
+
+```
+Yet-Another-Password-Keeper
+├── README.md
+├── dist
+│   ├── electron.js
+│   ├── index.html
+│   ├── react.js
+│   └── react.js.map
+├── node_modules
+├── package-lock.json
+├── package.json
+├── src
+│   ├── components
+│   │   ├── appLeftBar.tsx
+│   │   └── appRightBar.tsx
+│   ├── css
+│   │   └── index.css
+│   ├── electron.ts
+│   ├── index.html
+│   └── react.tsx
+├── tsconfig.json
+└── webpack.config.js
+```
+
+
 ### 2 How To Build An Electron App From Scratch
 
 根据参考中的文章，一步一步操作。
