@@ -1,16 +1,26 @@
 
 # Yet-Another-Password-Keeper
 
+```
+# 克隆这仓库
+$ git clone https://github.com/xsddz/Yet-Another-Password-Keeper.git
+# 进入仓库
+$ cd Yet-Another-Password-Keeper
+# 安装依赖库
+$ npm install
+# 运行应用
+$ npm start
+```
 
 
+# 附件
 
-
-## Build An Electron App From Scratch
+## 1 How To Build An Electron App From Scratch
 
 根据参考中的文章，一步一步操作。
 
 
-### 参考
+## 2 参考文章
 
 + [Electron 文档](https://www.electronjs.org/docs)
 + [Getting Started with Electron, Typescript, React and Webpack](https://www.sitepen.com/blog/getting-started-with-electron-typescript-react-and-webpack/)
