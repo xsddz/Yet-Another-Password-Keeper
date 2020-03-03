@@ -1,7 +1,7 @@
 {
-  "name": "electron-app-demo",
-  "version": "1.0.0",
-  "description": "An Electron App Demo for learn.",
+  "name": "yaper",
+  "version": "0.0.1",
+  "description": "yet another password keeper.",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "start": "npm run build && electron ./dist/electron.js"
