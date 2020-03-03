@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, systemPreferences } = require('electron')
 
 function createWindow() {
     // 创建浏览器窗口
@@ -47,3 +47,5 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. 也可以拆分成几个文件，然后用 require 导入。
 // In the renderer process.
+console.log("=======master")
+console.log(systemPreferences.getMediaAccessStatus("screen"))

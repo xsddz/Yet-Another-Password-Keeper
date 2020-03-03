@@ -50,5 +50,10 @@ body,
     padding: 0 15px;
 }
 
-/* Begin Search Component */
+/* Begin AppLeftBar Component */
 
+/* Begin AppRightBar Component */
+
+video {
+    width: 70%;
+}
