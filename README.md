@@ -1,18 +1,25 @@
 
 # Yet-Another-Password-Keeper
 
-use local SQLite database file store password info, so we can keep the database file for backup.
+yet another passowrd keeper app based on Electron.
+
+for safe, app is opensource.
+
+for easily backup, app use local SQLite database file to store password info, so you can keep the database file anytime you want.
 
 ## TODO
 
 + [√] 主框架
-+ [] 页面设计细化
++ [] 页面设计细化、图标设计等
 + [] SQLite操作库
 + [] Electron主进程和渲染进程通信
 + [] 添加、修改、删除、展示密码
 + [] app打包
 
-## 使用
+
+## 附件
+
+### 1 开发备忘录
 
 ```
 # 克隆这仓库
@@ -25,14 +32,12 @@ $ npm install
 $ npm start
 ```
 
-## 附件
-
-### 1 How To Build An Electron App From Scratch
+### 2 How To Build An Electron App From Scratch
 
 根据参考中的文章，一步一步操作。
 
 
-### 2 参考文章
+### 3 参考文章
 
 + [Electron 文档](https://www.electronjs.org/docs)
 + [Getting Started with Electron, Typescript, React and Webpack](https://www.sitepen.com/blog/getting-started-with-electron-typescript-react-and-webpack/)
