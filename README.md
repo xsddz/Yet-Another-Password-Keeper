@@ -5,8 +5,10 @@ use local SQLite database file store password info, so we can keep the database 
 
 ## TODO
 
-+ [] 页面设计
++ [√] 主框架
++ [] 页面设计细化
 + [] SQLite操作库
++ [] Electron主进程和渲染进程通信
 + [] 添加、修改、删除、展示密码
 + [] app打包
 
