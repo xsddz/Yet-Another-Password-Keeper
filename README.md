@@ -73,3 +73,5 @@ Yet-Another-Password-Keeper
 + [Module not found: Error: Can't resolve 'ReactDOM' - reactjs](https://html.developreference.com/article/11455919/Module+not+found%3A+Error%3A+Can%27t+resolve+%27ReactDOM%27)
 + [Full Height and Width "Web App" Style Layout Tutorial](https://www.youtube.com/watch?v=Nx0aYVwhwqQ&list=PLE4oxngl2zsozlg65XoNogjhCtGE742JV&index=3&t=0s)
 + [electron 仿制QQ登录界面](https://segmentfault.com/a/1190000016763275)
++ [desktop capture does not work on version 8.0.1 !!!](https://github.com/electron/electron/issues/22391)，对比发现系中文文档不是最新的！！！！！！
++ [npn install 卡住](https://github.com/electron/electron/issues/20841)，[electron-download](https://www.npmjs.com/package/electron-download)

@@ -11,7 +11,7 @@ export default function Desktop() {
         console.log("==========in desktopCapturer.getSources")
         for (const source of sources) {
             console.log(source)
-            if (source.name === 'Electron') {
+            if (source.name === 'Yet-Another-Password-Keeper') {
                 const mediaStream = useUserMedia({
                     audio: false,
                     video: {

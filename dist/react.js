@@ -29275,7 +29275,7 @@ function Desktop() {
             for (_i = 0, sources_1 = sources; _i < sources_1.length; _i++) {
                 source = sources_1[_i];
                 console.log(source);
-                if (source.name === 'Electron') {
+                if (source.name === 'Yet-Another-Password-Keeper') {
                     mediaStream = useUserMedia_1.useUserMedia({
                         audio: false,
                         video: {
