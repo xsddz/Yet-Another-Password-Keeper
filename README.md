@@ -1,6 +1,17 @@
 
 # Yet-Another-Password-Keeper
 
+use local SQLite database file store password info, so we can keep the database file for backup.
+
+## TODO
+
++ [] 页面设计
++ [] SQLite操作库
++ [] 添加、修改、删除、展示密码
++ [] app打包
+
+## 使用
+
 ```
 # 克隆这仓库
 $ git clone https://github.com/xsddz/Yet-Another-Password-Keeper.git
@@ -12,15 +23,14 @@ $ npm install
 $ npm start
 ```
 
+## 附件
 
-# 附件
-
-## 1 How To Build An Electron App From Scratch
+### 1 How To Build An Electron App From Scratch
 
 根据参考中的文章，一步一步操作。
 
 
-## 2 参考文章
+### 2 参考文章
 
 + [Electron 文档](https://www.electronjs.org/docs)
 + [Getting Started with Electron, Typescript, React and Webpack](https://www.sitepen.com/blog/getting-started-with-electron-typescript-react-and-webpack/)
