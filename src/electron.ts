@@ -1,6 +1,13 @@
 const { app, BrowserWindow, systemPreferences } = require('electron')
 
 function createWindow() {
+    // This user consent was not required on macOS 10.13 High Sierra or lower 
+    // so this method will always return granted. macOS 10.14 Mojave or higher 
+    // requires consent for microphone and camera access. macOS 10.15 Catalina 
+    // or higher requires consent for screen access.
+    console.log("=======getMediaAccessStatus(camera):" + systemPreferences.getMediaAccessStatus("camera"))
+    console.log("=======getMediaAccessStatus(screen):" + systemPreferences.getMediaAccessStatus("screen"))
+    
     // 创建浏览器窗口
     const mainWindow = new BrowserWindow({
         width: 800,
@@ -47,5 +54,3 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. 也可以拆分成几个文件，然后用 require 导入。
 // In the renderer process.
-console.log("=======master")
-console.log(systemPreferences.getMediaAccessStatus("screen"))
