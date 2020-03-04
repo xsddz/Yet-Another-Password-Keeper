@@ -1,17 +1,41 @@
 import * as React from 'react';
-import { useUserMedia } from './useUserMedia';
-
-const CAPTURE_OPTIONS = {
-    audio: false,
-    video: { facingMode: "environment" },
-};
 
 export default function Camera() {
     const videoRef = React.useRef<HTMLVideoElement>(null);
-    const mediaStream = useUserMedia(CAPTURE_OPTIONS);
+    const mediaStream = useUserMedia({
+        audio: false,
+        video: { facingMode: "environment" },
+    });
 
     if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
         videoRef.current.srcObject = mediaStream;
+    }
+
+    function useUserMedia(requestedMedia) {
+        const [mediaStream, setMediaStream] = React.useState(null);
+
+        React.useEffect(() => {
+            async function enableStream() {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia(requestedMedia);
+                    setMediaStream(stream);
+                } catch (err) {
+                    // Removed for brevity
+                }
+            }
+
+            if (!mediaStream) {
+                enableStream();
+            } else {
+                return function cleanup() {
+                    mediaStream.getTracks().forEach(track => {
+                        track.stop();
+                    });
+                }
+            }
+        }, [mediaStream, requestedMedia]);
+
+        return mediaStream;
     }
 
     function handleCanPlay() {

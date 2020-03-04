@@ -1,43 +1,60 @@
 import * as React from 'react';
-import { useUserMedia } from './useUserMedia';
-
-const { desktopCapturer } = require('electron')
 
 export default function Desktop() {
     const videoRef = React.useRef<HTMLVideoElement>(null);
 
-    console.log("==========before desktopCapturer.getSources")
+    const { desktopCapturer } = require('electron')
     desktopCapturer.getSources({ types: ['window', 'screen'] }).then(async sources => {
-        console.log("==========in desktopCapturer.getSources")
-        for (const source of sources) {
-            console.log(source)
-            if (source.name === 'Yet-Another-Password-Keeper') {
-                const mediaStream = useUserMedia({
-                    audio: false,
-                    video: {
-                        mandatory: {
-                            chromeMediaSource: 'desktop',
-                            chromeMediaSourceId: source.id,
-                            minWidth: 1280,
-                            maxWidth: 1280,
-                            minHeight: 720,
-                            maxHeight: 720
-                        }
-                    }
-                });
-
-                if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
-                    videoRef.current.srcObject = mediaStream;
-                }
-
-                return
+        userMedia({
+            mandatory: {
+                chromeMediaSource: 'desktop',
+                chromeMediaSourceId: sources[0].id,
             }
-        }
+        })
+        return
+
+        // loop screen logic
+        // for (const source of sources) {
+        //     console.log(source)
+        //     if (source.name === 'Screen 1') {
+        //         userMedia({
+        //             mandatory: {
+        //                 chromeMediaSource: 'desktop',
+        //                 chromeMediaSourceId: source.id,
+        //                 minWidth: 1280,
+        //                 maxWidth: 1280,
+        //                 minHeight: 720,
+        //                 maxHeight: 720
+        //             }
+        //         })
+
+        //         return
+        //     }
+        // }
     })
+
+    async function userMedia(requestedMedia) {
+        try {
+            const mediaStream = await navigator.mediaDevices.getUserMedia({
+                audio: false,
+                video: requestedMedia
+            })
+            
+            if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
+                videoRef.current.srcObject = mediaStream;
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    function handleCanPlay() {
+        videoRef.current.play();
+    }
 
     return (
         <div className="video-desktop">
-            <video ref={videoRef} controls autoPlay playsInline muted />
+            <video ref={videoRef} onCanPlay={handleCanPlay} autoPlay playsInline muted />
         </div>
     )
 }
