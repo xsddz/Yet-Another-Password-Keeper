@@ -13,13 +13,15 @@ for easily backup, app use local SQLite database file to store password info, so
 + [√][功能调研] 视频采集
 + [√][功能调研] capture桌面
 + [?][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
++ [][功能调研] 音视频recorder、mixer、converter
++ [][功能调研] 推流
 + [][实现] 页面设计细化、图标设计等
 + [][实现] SQLite操作库
 + [][实现] Electron主进程和渲染进程通信
 + [][实现] 添加、修改、删除、展示密码
 + [][实现] app打包
 
-以上，功能调研部分，为其他项目需求，在这里进行试验，后续会删除。
+以上，功能调研部分，借助这里的环境进行试验，后续会删除。
 
 ## 附件
 
