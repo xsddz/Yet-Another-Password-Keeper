@@ -15,6 +15,7 @@ for easily backup, app use local SQLite database file to store password info, so
 + [][实现] Electron主进程和渲染进程通信
 + [][实现] 添加、修改、删除、展示密码
 + [✓][实现] app打包
+
 + [✓][功能调研] 视频采集
 + [✓][功能调研] capture桌面
 + [?][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
@@ -43,25 +44,23 @@ $ npm start
 ```
 Yet-Another-Password-Keeper
 ├── README.md
-├── dist
-│   ├── electron.js
-│   ├── index.html
-│   ├── react.js
-│   └── react.js.map
 ├── node_modules
 ├── package-lock.json
 ├── package.json
 ├── src
 │   ├── components
 │   │   ├── appLeftBar.tsx
-│   │   └── appRightBar.tsx
+│   │   ├── appRightBar.tsx
+│   │   ├── camera.tsx
+│   │   └── desktop.tsx
 │   ├── css
 │   │   └── index.css
 │   ├── electron.ts
 │   ├── index.html
-│   └── react.tsx
+│   └── index.tsx
 ├── tsconfig.json
 └── webpack.config.js
+
 ```
 
 ### 2 How To Build An Electron App From Scratch
@@ -72,8 +71,7 @@ Yet-Another-Password-Keeper
 
 + [Electron 文档](https://www.electronjs.org/docs)
 + [Getting Started with Electron, Typescript, React and Webpack](https://www.sitepen.com/blog/getting-started-with-electron-typescript-react-and-webpack/)
-+ [入门教程: 认识 React](https://zh-hans.reactjs.org/tutorial/tutorial.html#inspecting-the-starter-code)
-+ [State & 生命周期](https://zh-hans.reactjs.org/docs/state-and-lifecycle.html)
++ [入门教程: 认识 React](https://zh-hans.reactjs.org/tutorial/tutorial.html#inspecting-the-starter-code)，[State & 生命周期](https://zh-hans.reactjs.org/docs/state-and-lifecycle.html)
 + [TypeScript+React入门-----引入css](https://segmentfault.com/a/1190000017404282)
 + [Module not found: Error: Can't resolve 'ReactDOM' - reactjs](https://html.developreference.com/article/11455919/Module+not+found%3A+Error%3A+Can%27t+resolve+%27ReactDOM%27)
 + [Full Height and Width "Web App" Style Layout Tutorial](https://www.youtube.com/watch?v=Nx0aYVwhwqQ&list=PLE4oxngl2zsozlg65XoNogjhCtGE742JV&index=3&t=0s)
