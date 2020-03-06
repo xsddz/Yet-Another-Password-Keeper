@@ -30,11 +30,38 @@ module.exports = [
                     use: [{ loader: 'ts-loader' }]
                 },
                 {
-                    test: /\.css$/,
+                    test: /\.(s[ac]ss|css)$/i,
                     include: /src/,
                     use: [
                         'style-loader',
-                        'css-loader'
+                        'css-loader',
+                        'sass-loader',
+                    ]
+                },
+                {
+                    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                    include: /src/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[name].[ext]',
+                                outputPath: 'fonts/'
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    include: /src/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[name].[ext]',
+                                outputPath: 'img/'
+                            }
+                        }
                     ]
                 }
             ]

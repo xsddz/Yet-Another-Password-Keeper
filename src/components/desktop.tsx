@@ -54,7 +54,10 @@ export default function Desktop() {
 
     return (
         <div className="video-desktop">
+            <hr/>
             <video ref={videoRef} onCanPlay={handleCanPlay} autoPlay playsInline muted />
+            <div className="small">音频、共享桌面采集</div>
+            <hr/>
         </div>
     )
 }

@@ -44,7 +44,10 @@ export default function Camera() {
 
     return (
         <div className="video-camera">
+            <hr/>
             <video ref={videoRef} onCanPlay={handleCanPlay} autoPlay playsInline muted />
+            <div className="small">摄像头视频采集</div>
+            <hr/>
         </div>
     );
 }

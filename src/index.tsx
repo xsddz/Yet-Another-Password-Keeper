@@ -1,18 +1,24 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import AppLeftBar from './components/appLeftBar';
-import AppRightBar from './components/appRightBar';
-import './css/index.css';
+import AppLeftContent from './components/appLeftContent';
+import AppRightContent from './components/appRightContent';
+
+import './css/photon.min.css';
+import './css/index.scss';
 
 class App extends React.Component {
     render() {
         return (
-            <div className="app">
-                <div className="app-left-bar">
-                    <AppLeftBar />
-                </div>
-                <div className="app-right-bar">
-                    <AppRightBar />
+            <div className="window">
+                <div className="window-content">
+                    <div className="pane-group">
+                        <div className="pane-one-third sidebar">
+                            <AppLeftContent />
+                        </div>
+                        <div className="pane">
+                            <AppRightContent />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
