@@ -9,17 +9,17 @@ for easily backup, app use local SQLite database file to store password info, so
 
 ## TODO
 
-+ [√][实现] 主框架
-+ [√][功能调研] 视频采集
-+ [√][功能调研] capture桌面
-+ [?][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
-+ [][功能调研] 音视频recorder、mixer、converter
-+ [][功能调研] 推流
++ [✓][实现] 主框架
 + [][实现] 页面设计细化、图标设计等
 + [][实现] SQLite操作库
 + [][实现] Electron主进程和渲染进程通信
 + [][实现] 添加、修改、删除、展示密码
-+ [][实现] app打包
++ [✓][实现] app打包
++ [✓][功能调研] 视频采集
++ [✓][功能调研] capture桌面
++ [?][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
++ [][功能调研] 音视频recorder、mixer、converter
++ [][功能调研] 推流
 
 以上，功能调研部分，借助这里的环境进行试验，后续会删除。
 
@@ -82,3 +82,5 @@ Yet-Another-Password-Keeper
 + [Building a responsive camera component with React Hooks](https://blog.logrocket.com/responsive-camera-component-react-hooks/)
 + [Invalid Hook Call Warning](https://reactjs.org/warnings/invalid-hook-call-warning.html)
 + [npn install 卡住](https://github.com/electron/electron/issues/20841)，[electron-download](https://www.npmjs.com/package/electron-download)
++ [npm --save-dev --save 的区别](https://segmentfault.com/a/1190000010686415)
++ [Electron 使用 Webpack2 打包应用程序](https://www.jianshu.com/p/fa54b3325fb1)，[Electron-builder打包应用程序策略](https://www.cnblogs.com/leejay6567/p/10092962.html)，[File Patterns](https://www.electron.build/file-patterns)，[你不知道的 Electron (二)：了解 Electron 打包](https://imweb.io/topic/5b6817b5f6734fdf12b4b09c)，[electron-builder打包见解](https://segmentfault.com/a/1190000016695922)

@@ -2,6 +2,8 @@
 .cache
 npm-debug.log
 Thumbs.db
+
+electron.js
 node_modules/
 dist/
-pkg/
+output/

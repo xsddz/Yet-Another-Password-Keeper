@@ -6,17 +6,36 @@
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "start": "npm run build && electron .",
-    "pkg": "npm run build && electron-packager . --out=./pkg"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "your.id",
+    "directories": {
+      "output": "output"
+    },
+    "files": [
+      "**/*",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{package.json,package-lock.json,tsconfig.json,webpack.conf.js}",
+      "!src/",
+      "!output/",
+      "!node_modules/*"
+    ],
+    "mac": {
+      "category": "your.app.category.type"
+    }
   },
   "keywords": [],
-  "author": "",
+  "author": "xsddz",
   "license": "",
   "devDependencies": {
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "css-loader": "^3.4.2",
     "electron": "^8.0.2",
-    "electron-packager": "^14.2.1",
+    "electron-builder": "^22.3.6",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
