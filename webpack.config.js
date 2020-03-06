@@ -13,19 +13,19 @@ module.exports = [
             }]
         },
         output: {
-            path: __dirname + '/dist',
+            path: __dirname + '/',
             filename: 'electron.js'
         }
     },
     {
         mode: 'development',
-        entry: './src/react.tsx',
+        entry: './src/index.tsx',
         target: 'electron-renderer',
         devtool: 'source-map',
         module: {
             rules: [
                 {
-                    test: /\.ts(x?)$/,
+                    test: /\.tsx$/,
                     include: /src/,
                     use: [{ loader: 'ts-loader' }]
                 },
@@ -44,7 +44,7 @@ module.exports = [
         },
         output: {
             path: __dirname + '/dist',
-            filename: 'react.js'
+            filename: 'index.js'
         },
         plugins: [
             new HtmlWebpackPlugin({
