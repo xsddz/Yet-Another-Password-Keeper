@@ -24,10 +24,9 @@ function createWindow() {
 
     // 并且为你的应用加载index.html
     mainWindow.loadFile('dist/index.html')
-    // mainWindow.loadURL(`file://${__dirname}/dist/index.html`)
 
     // 打开开发者工具
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
