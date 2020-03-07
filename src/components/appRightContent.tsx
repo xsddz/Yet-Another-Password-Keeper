@@ -6,23 +6,60 @@ export default class AppRightBar extends React.Component {
     render() {
         return (
             <div className="right-content">
-                <div className="box text-center">
+                {/* <div className="sep20"></div>
+                <Camera />
+                <div className="sep20"></div>
+                <Desktop /> */}
+                <div className="sep20"></div>
+                <div className="sep20"></div>
+                <div className="sep20"></div>
+                <div className="sep10"></div>
+                <form>
+                    <div className="form-group">
+                        <label className="form-label text-right">标题：</label>
+                        <div className="form-label-for">
+                            <input type="text" className="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label text-right">登陆账号：</label>
+                        <div className="form-label-for">
+                            <input type="text" className="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label text-right">密码：</label>
+                        <div className="form-label-for">
+                            <input type="text" className="form-control" placeholder="" />
+                            <label title="显示/遮掩密码" className="addon show"><span className="icon icon-lock-open"></span></label>
+                            <label title="显示/遮掩密码" className="addon hidden"><span className="icon icon-lock"></span></label>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label text-right">网址：</label>
+                        <div className="form-label-for">
+                            <input type="text" className="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label text-right">备注：</label>
+                        <div className="form-label-for">
+                            <textarea className="form-control" rows={3}></textarea>
+                        </div>
+                    </div>
                     <div className="sep20"></div>
-                    <Camera />
-                    <div className="sep20"></div>
-                    <Desktop />
-                    <div className="sep20"></div>
-                    <section>
-                        <h1>Getting Started</h1>
-                        <p>To begin, you'll need to install sass-loader:</p>
-                        <pre><code>
-                        npm install sass-loader node-sass webpack --save-dev
-                        </code></pre>
-                        <p>sass-loader requires you to install either Node Sass or Dart Sass on your own (more documentation can be found below). This allows you to control the versions of all your dependencies, and to choose which Sass implementation to use.</p>
-                        <p>Chain the sass-loader with the css-loader and the style-loader to immediately apply all styles to the DOM or the mini-css-extract-plugin to extract it into a separate file.</p>
-                        
-                    </section>
-                </div>
+                    <div className="form-actions">
+                        <label className="form-label text-right"></label>
+                        <div className="form-label-for">
+                            <button type="submit" className="btn btn-mini btn-form btn-primary">保存</button>
+                            <button type="submit" className="btn btn-mini btn-form btn-default">取消</button>
+                        </div>
+                    </div>
+                </form>
+                <div className="sep10"></div>
+                <div className="sep20"></div>
+                <div className="sep20"></div>
+                <div className="sep20"></div>
             </div>
         )
     }

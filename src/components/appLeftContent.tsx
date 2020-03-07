@@ -9,17 +9,18 @@ export default class AppLeftBar extends React.Component {
             <div className="left-content">
                 <header className="toolbar toolbar-header">
                     <div className="toolbar-actions">
-                        <label className="toolbar-input">
+                        <div className="form-icon-text-group">
                             <span className="icon icon-search"></span>
                             <input type="search" className="form-control" placeholder="Search..." />
-                        </label>
+                        </div>
 
                         <div className="btn-group pull-right">
-                            <button className="btn btn-default">
+                            <button className="btn btn-mini btn-default active">
                                 <span className="icon icon-plus"></span>
                             </button>
-                            <button className="btn btn-default">
+                            <button className="btn btn-mini btn-default">
                                 <span className="icon icon-cog"></span>
+                                {/* <span className="icon icon-dot-3"></span> */}
                             </button>
                         </div>
                     </div>

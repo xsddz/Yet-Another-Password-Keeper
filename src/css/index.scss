@@ -8,45 +8,92 @@
 .sep20 {
     height: 20px;
 }
-.box {
-    padding: 0 15px;
+
+.hidden {
+    display: none !important;
+}
+
+.form-icon-text-group {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: visible;
+    margin: 0 0 0 4px;
+    padding: 0;
+    .icon {
+        position: absolute;
+        left: 10px;
+        top: 4px;
+        z-index: 1;
+        opacity: 0.5;  /* ~matches placeholder */
+    }
+    .form-control {
+        padding: 3px 4px 1px 24px;
+        border-radius: 12px;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
+                    0 0 0 7px rgba(109,179,253,0);
+
+        &:focus {
+            /* something like this was already in place: */
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
+                        0 0 0 1px rgba(109,179,253,0.8);
+            transition: box-shadow 250ms ease-out;
+        }
+    }
 }
 
 .left-content {
-    .toolbar .toolbar-input {
-        vertical-align: middle;
-        position: relative;
-        overflow: visible;
-        margin: 0;
-        padding: 0;
-        .icon {
-            position: absolute;
-            left: 10px;
-            top: 4px;
-            z-index: 1;
-            opacity: 0.5;  /* ~matches placeholder */
-        }
-        .form-control {
-            padding: 3px 4px 1px 24px;
-            border-radius: 12px;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
-                        0 0 0 7px rgba(109,179,253,0);
-    
-            &:focus {
-                /* something like this was already in place: */
-                box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
-                            0 0 0 1px rgba(109,179,253,0.8);
-                transition: box-shadow 250ms ease-out;
-            }
-        }
-    }
     .toolbar .btn-group.pull-right {
-        margin: 1px;
+        margin: 2px;
     }
 }
 
 .right-content {
     video {
         width: 70%;
+    }
+    form {
+        .form-label {
+            vertical-align: text-top;
+            width: 24%;
+            margin: 0 7px 0 0;
+        }
+        .form-label-for {
+            vertical-align: top;
+            display: inline-block;
+            width: 70%;
+
+            .form-control {
+                width: 80%;
+
+                &:focus {
+                    /* something like this was already in place: */
+                    box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
+                                0 0 0 1px rgba(109,179,253,0.8);
+                    transition: box-shadow 250ms ease-out;
+                }
+            }
+
+            textarea {
+                resize: vertical;
+            }
+
+            label.addon {
+                vertical-align: bottom;
+                margin: 0 0 0 10px;
+                padding: 0;
+                font-size: 20px;
+
+                span {
+                    &:hover {
+                        color: red;
+                        cursor: pointer;
+                    }
+                    &:active {
+                        color: lightblue;
+                    }
+                }
+            }
+        }
     }
 }

@@ -12,10 +12,10 @@ class App extends React.Component {
             <div className="window">
                 <div className="window-content">
                     <div className="pane-group">
-                        <div className="pane-one-third sidebar">
+                        <div className="pane-one-third">
                             <AppLeftContent />
                         </div>
-                        <div className="pane">
+                        <div className="pane sidebar">
                             <AppRightContent />
                         </div>
                     </div>
