@@ -6,14 +6,11 @@
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "start": "npm run build && electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "pack": "electron-builder --dir --mac --win --x64",
+    "dist": "electron-builder --mac --win --x64"
   },
   "build": {
-    "appId": "your.id",
-    "directories": {
-      "output": "output"
-    },
+    "appId": "org.dingzhihao.electron-app-demo",
     "files": [
       "**/*",
       "!**/._*",
@@ -23,8 +20,15 @@
       "!output/",
       "!node_modules/*"
     ],
+    "directories": {
+      "output": "output"
+    },
     "mac": {
-      "category": "your.app.category.type"
+      "category": "your.app.category.type",
+      "target": ["dmg","zip"]
+    },
+    "win": {
+      "target": ["nsis","zip"]
     }
   },
   "keywords": [],
