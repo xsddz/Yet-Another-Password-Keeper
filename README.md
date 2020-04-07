@@ -85,3 +85,6 @@ Yet-Another-Password-Keeper
 + [Loading Fonts with webpack](https://chriscourses.com/blog/loading-fonts-webpack)
 + [Loading Images](https://webpack.js.org/guides/asset-management/#loading-images)，[typescript项目中import 图片时报错：TS2307: Cannot find module ‘...’](https://www.cnblogs.com/chen-cong/p/10445635.html)
 + [Form Inputs with inset icons](https://github.com/connors/photon/issues/14)，[sass-loader](https://webpack.js.org/loaders/sass-loader/)
++ [Developing ElectronJS applications with SQLite3](https://www.youtube.com/watch?v=c76FTxLRwAw)，[knex](http://knexjs.org/#Installation)，[electron-rebuild failure with sqlite3](https://github.com/electron/electron-rebuild/issues/204)
++ [Module not found: Error: Can't resolve 'aws-sdk'](https://github.com/webpack/webpack/issues/8400)，[Webpack node modules externals](https://www.npmjs.com/package/webpack-node-externals)
++ [TypeScript Modules](https://www.typescriptlang.org/docs/handbook/modules.html)，[TypeScript Classes](https://www.typescriptlang.org/docs/handbook/classes.html)

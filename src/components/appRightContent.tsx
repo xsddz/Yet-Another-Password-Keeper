@@ -26,19 +26,19 @@ export default class AppRightBar extends React.Component<AppRightBarProps, AppRi
                     <div className="form-group">
                         <label className="form-label text-right">标题：</label>
                         <div className="form-label-for">
-                            <input type="text" value={this.props.passInfo["title"]} className="form-control" placeholder="" />
+                            <input type="text" defaultValue={this.props.passInfo["title"]} className="form-control" placeholder="" />
                         </div>
                     </div>
                     <div className="form-group">
                         <label className="form-label text-right">登陆账号：</label>
                         <div className="form-label-for">
-                            <input type="text" value={this.props.passInfo["account"]} className="form-control" placeholder="" />
+                            <input type="text" defaultValue={this.props.passInfo["account"]} className="form-control" placeholder="" />
                         </div>
                     </div>
                     <div className="form-group">
                         <label className="form-label text-right">密码：</label>
                         <div className="form-label-for">
-                            <input type="text" value={this.props.passInfo["password"]} className="form-control" placeholder="" />
+                            <input type="text" defaultValue={this.props.passInfo["password"]} className="form-control" placeholder="" />
                             <label title="显示/遮掩密码" className="addon show"><span className="icon icon-lock-open"></span></label>
                             <label title="显示/遮掩密码" className="addon hidden"><span className="icon icon-lock"></span></label>
                         </div>
@@ -46,13 +46,13 @@ export default class AppRightBar extends React.Component<AppRightBarProps, AppRi
                     <div className="form-group">
                         <label className="form-label text-right">网址：</label>
                         <div className="form-label-for">
-                            <input type="text" value={this.props.passInfo["site"]} className="form-control" placeholder="" />
+                            <input type="text" defaultValue={this.props.passInfo["site"]} className="form-control" placeholder="" />
                         </div>
                     </div>
                     <div className="form-group">
                         <label className="form-label text-right">备注：</label>
                         <div className="form-label-for">
-                            <textarea value={this.props.passInfo["remarks"]} className="form-control" rows={3}></textarea>
+                            <textarea defaultValue={this.props.passInfo["remarks"]} className="form-control" rows={3}></textarea>
                         </div>
                     </div>
                     <div className="sep20"></div>

@@ -16,8 +16,18 @@ interface AppState {
 }
 
 class App extends React.Component<AppProps, AppState> {
+    constructor(props: AppProps) {
+        super(props)
+
+        this.state = {
+            search: "",
+            list: [],
+            passinfo: {},
+        }
+    }
+
     // generate icon based on first char of string s
-    genTextImg(size: number[], s: string) {
+    genTextIcon(size: number[], s: string) {
         let tranColor = (name) => {
             var str = '';
             for (var i = 0; i < name.length; i++) {
@@ -51,13 +61,13 @@ class App extends React.Component<AppProps, AppState> {
             list: [
                 {
                     "id": 381341,
-                    "icon": this.genTextImg([128, 128], "脉动"),
+                    "icon": this.genTextIcon([128, 128], "脉动"),
                     "title": "脉动",
                     "desc": "听说，万物皆可脉动回来？",
                 },
                 {
                     "id": 328421,
-                    "icon": this.genTextImg([128, 128], "旺仔"),
+                    "icon": this.genTextIcon([128, 128], "旺仔"),
                     "title": "旺仔",
                     "desc": "再看、再看就把我喝掉！",
                 }
@@ -73,13 +83,9 @@ class App extends React.Component<AppProps, AppState> {
         })
     }
 
-    // Before the component mounts, we initialise our state
-    componentWillMount() {
-        this.listPass("Hi")
-    }
-
     // After the component did mount, we set the state each second.
     componentDidMount() {
+        this.listPass("Hi")
     }
 
     render() {

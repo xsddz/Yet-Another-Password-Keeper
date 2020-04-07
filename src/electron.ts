@@ -1,4 +1,10 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
+const { PassDB } = require('./modules/passdb')
+
+const documentPath = app.getPath("documents")
+const appStoragePath = documentPath + "/" + app.name
+
+const passDB = new PassDB(appStoragePath)
 
 function createWindow() {
     // 创建浏览器窗口
@@ -19,7 +25,9 @@ function createWindow() {
     mainWindow.loadFile('dist/index.html')
 
     // 打开开发者工具
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
+
+    // 
 }
 
 // This method will be called when Electron has finished

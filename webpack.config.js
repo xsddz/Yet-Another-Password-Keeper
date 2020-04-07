@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = [
     {
@@ -11,6 +12,11 @@ module.exports = [
                 include: /src/,
                 use: [{ loader: 'ts-loader' }]
             }]
+        },
+        target: 'node',
+        externals: [nodeExternals()],
+        resolve: {
+            extensions: [".ts"]
         },
         output: {
             path: __dirname + '/',

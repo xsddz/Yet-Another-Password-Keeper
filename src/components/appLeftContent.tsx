@@ -13,13 +13,13 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
         super(props);
     }
 
-    componentDidMount() {}
+    searchChange = (e) => {
+        console.log(e, this);
+    }
 
-    componentWillUnmount() {}
-
-    renderListItem(itemIcon, itemTitle, itemDesc){
+    renderListItem(itemID, itemIcon, itemTitle, itemDesc){
         return (
-            <li className="list-group-item">
+            <li key={itemID} className="list-group-item">
                 <img className="img-circle media-object pull-left" src={itemIcon} width="32" height="32" />
                 <div className="media-body">
                     <strong>{itemTitle}</strong>
@@ -36,7 +36,7 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
                     <div className="toolbar-actions">
                         <div className="form-icon-text-group">
                             <span className="icon icon-search"></span>
-                            <input type="search" value={this.props.searchText} className="form-control" placeholder="Search..." />
+                            <input type="search" value={this.props.searchText} onChange={this.searchChange} className="form-control" placeholder="Search..." />
                         </div>
 
                         <div className="btn-group pull-right">
@@ -50,7 +50,7 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
                     </div>
                 </header>
                 <ul className="list-group">
-                    {this.props.passList.map((item) => this.renderListItem(item["icon"], item["title"], item["desc"]) )}
+                    {this.props.passList.map((item) => this.renderListItem(item["id"], item["icon"], item["title"], item["desc"]) )}
                 </ul>
             </div>
             
