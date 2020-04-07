@@ -1,9 +1,34 @@
 import * as React from 'react';
 
-import itemImgA from '../img/a.png';
-import itemImgB from '../img/b.png';
+interface AppLeftBarProps {
+    searchText?: string
+    passList?: {}[]
+}
 
-export default class AppLeftBar extends React.Component {
+interface AppLeftBarState {
+}
+
+export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeftBarState> {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {}
+
+    componentWillUnmount() {}
+
+    renderListItem(itemIcon, itemTitle, itemDesc){
+        return (
+            <li className="list-group-item">
+                <img className="img-circle media-object pull-left" src={itemIcon} width="32" height="32" />
+                <div className="media-body">
+                    <strong>{itemTitle}</strong>
+                    <p>{itemDesc}</p>
+                </div>
+            </li>
+        );
+    }
+
     render() {
         return (
             <div className="left-content">
@@ -11,7 +36,7 @@ export default class AppLeftBar extends React.Component {
                     <div className="toolbar-actions">
                         <div className="form-icon-text-group">
                             <span className="icon icon-search"></span>
-                            <input type="search" className="form-control" placeholder="Search..." />
+                            <input type="search" value={this.props.searchText} className="form-control" placeholder="Search..." />
                         </div>
 
                         <div className="btn-group pull-right">
@@ -20,26 +45,12 @@ export default class AppLeftBar extends React.Component {
                             </button>
                             <button className="btn btn-mini btn-default">
                                 <span className="icon icon-cog"></span>
-                                {/* <span className="icon icon-dot-3"></span> */}
                             </button>
                         </div>
                     </div>
                 </header>
                 <ul className="list-group">
-                    <li className="list-group-item">
-                        <img className="img-circle media-object pull-left" src={itemImgA} width="32" height="32" />
-                        <div className="media-body">
-                            <strong>List item title</strong>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </li>
-                    <li className="list-group-item">
-                        <img className="img-circle media-object pull-left" src={itemImgB} width="32" height="32" />
-                        <div className="media-body">
-                            <strong>List item title</strong>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </li>
+                    {this.props.passList.map((item) => this.renderListItem(item["icon"], item["title"], item["desc"]) )}
                 </ul>
             </div>
             

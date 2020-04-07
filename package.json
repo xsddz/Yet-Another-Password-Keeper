@@ -25,10 +25,16 @@
     },
     "mac": {
       "category": "your.app.category.type",
-      "target": ["dmg","zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis","zip"]
+      "target": [
+        "nsis",
+        "zip"
+      ]
     }
   },
   "keywords": [],
