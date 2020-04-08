@@ -2,6 +2,9 @@ import * as React from 'react';
 import Camera from './camera';
 import Desktop from './desktop';
 
+const electron = require("electron");
+const ipc = electron.ipcRenderer;
+
 interface AppRightBarProps {
     passInfo?: {}
 }
@@ -11,6 +14,14 @@ interface AppRightBarState {
 
 
 export default class AppRightBar extends React.Component<AppRightBarProps, AppRightBarState> {
+    constructor(props: AppRightBarProps) {
+        super(props)
+    }
+
+    onSavePass() {
+        ipc.send("addPassRecord", { title: "脉动" })
+    }
+
     render() {
         return (
             <div className="right-content">

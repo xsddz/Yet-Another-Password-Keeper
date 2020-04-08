@@ -27,7 +27,50 @@ function createWindow() {
     // 打开开发者工具
     mainWindow.webContents.openDevTools()
 
-    // 
+    // for test ...
+    // passDB.AddPassRecord({ title: "脉送" }).then(function(result) {
+    //     console.log("=====addrecord: " + result)
+    // });
+    // passDB.SearchPassRecord("").then(function (rows) {
+    //     console.log("=====searchrecord: ")
+    //     console.log(rows)
+    // });
+    // passDB.SearchPassRecord("脉").then(function (rows) {
+    //     console.log("=====searchrecord: ")
+    //     console.log(rows)
+    // });
+    // passDB.SearchPassRecord("脉动").then(function (rows) {
+    //     console.log("=====searchrecord: ")
+    //     console.log(rows)
+    // });
+    ipcMain.on("addPassRecord", function(evt, data) {
+        console.log("=======addPassRecord:")
+        // console.log(evt)
+        console.log(data)
+
+        passDB.AddPassRecord(data).then(function (result) {
+            console.log("=====addrecord: " + result)
+        });
+        
+        passDB.SearchPassRecord(data["title"]).then(function (rows) {
+            console.log("=====searchrecord: ")
+            console.log(rows)
+
+            mainWindow.webContents.send("passlist", rows);
+        });
+    })
+    ipcMain.on("listPassRecord", function (evt, search) {
+        console.log("=======listPassRecord:")
+        // console.log(evt)
+        console.log(search)
+
+        passDB.SearchPassRecord(search).then(function (rows) {
+            console.log("=====searchrecord: ")
+            console.log(rows)
+
+            mainWindow.webContents.send("passlist", rows);
+        });
+    });
 }
 
 // This method will be called when Electron has finished

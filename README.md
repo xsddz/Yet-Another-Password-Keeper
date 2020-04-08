@@ -88,3 +88,6 @@ Yet-Another-Password-Keeper
 + [Developing ElectronJS applications with SQLite3](https://www.youtube.com/watch?v=c76FTxLRwAw)，[knex](http://knexjs.org/#Installation)，[electron-rebuild failure with sqlite3](https://github.com/electron/electron-rebuild/issues/204)
 + [Module not found: Error: Can't resolve 'aws-sdk'](https://github.com/webpack/webpack/issues/8400)，[Webpack node modules externals](https://www.npmjs.com/package/webpack-node-externals)
 + [TypeScript Modules](https://www.typescriptlang.org/docs/handbook/modules.html)，[TypeScript Classes](https://www.typescriptlang.org/docs/handbook/classes.html)
++ [Electron: Change React component state from main.js](https://stackoverflow.com/questions/47440798/electron-change-react-component-state-from-main-js)，[TypeError: Cannot read property 'updater' of undefined](https://github.com/facebook/react/issues/9654)，[Updating an object with setState in React](https://stackoverflow.com/questions/43638938/updating-an-object-with-setstate-in-react)
++ [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+

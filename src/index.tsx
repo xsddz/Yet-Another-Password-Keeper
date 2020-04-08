@@ -6,6 +6,9 @@ import AppRightContent from './components/appRightContent';
 import './css/photon.min.css';
 import './css/index.scss';
 
+const electron = require("electron");
+const ipc = electron.ipcRenderer;
+
 interface AppProps {
 }
 
@@ -56,36 +59,39 @@ class App extends React.Component<AppProps, AppState> {
 
     // list pass info from db with the search text
     listPass(search: string) {
-        this.setState({
+        const app = this
+
+        app.setState({
             search: search,
-            list: [
-                {
-                    "id": 381341,
-                    "icon": this.genTextIcon([128, 128], "脉动"),
-                    "title": "脉动",
-                    "desc": "听说，万物皆可脉动回来？",
-                },
-                {
-                    "id": 328421,
-                    "icon": this.genTextIcon([128, 128], "旺仔"),
-                    "title": "旺仔",
-                    "desc": "再看、再看就把我喝掉！",
-                }
-            ],
-            passinfo: {
-                "id": 328421,
-                "title": "旺仔",
-                "account": "wz",
-                "password": "wangzai",
-                "site": "wangzai.demo",
-                "remarks": "再看、再看就把我喝掉！",
-            }
-        })
+            passinfo: {},
+        });
+
+        ipc.send("listPassRecord", search);
+        ipc.on("passlist", function (evt, recordList) {
+            // console.log(evt);
+            // console.log(recordList);
+
+            app.setState({
+                list: recordList.map(function(item) {
+                    return {
+                        "id": item["id"],
+                        "icon": app.genTextIcon([128, 128], item["title"]),
+                        "title": item["title"],
+                        "site_or_app": item["site_or_app"],
+                        "login_name": item["login_name"],
+                        "login_pass": item["login_pass"],
+                        "remarks": item["remarks"],
+                        "updated_at": item["updated_at"],
+                    }
+                }),
+            });
+        });
     }
 
     // After the component did mount, we set the state each second.
     componentDidMount() {
-        this.listPass("Hi")
+        // list all passwd record with empty search
+        this.listPass("");
     }
 
     render() {
