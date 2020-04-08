@@ -42,58 +42,73 @@
     }
 }
 
-.left-content {
-    .toolbar .btn-group.pull-right {
-        margin: 2px;
-    }
-}
+.window-content {
+    overflow: hidden;
 
-.right-content {
-    video {
-        width: 70%;
-    }
-    form {
-        width: 80%;
-        margin: auto;
-        
-        .form-label {
-            vertical-align: text-top;
-            width: 24%;
-            margin: 0 7px 0 0;
+    .pane-one-third {
+        height: 100%;
+
+        .left-content {
+            height: 100%;
+
+            .toolbar .btn-group.pull-right {
+                margin: 2px;
+            }
+
+            ul.list-group {
+                height: 92%;
+                overflow-y: auto;
+            }
         }
-        .form-label-for {
-            vertical-align: top;
-            display: inline-block;
+    }
+
+    .right-content {
+        video {
             width: 70%;
-
-            .form-control {
-                width: 80%;
-
-                &:focus {
-                    /* something like this was already in place: */
-                    box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
-                                0 0 0 1px rgba(109,179,253,0.8);
-                    transition: box-shadow 250ms ease-out;
-                }
+        }
+        form {
+            width: 80%;
+            margin: auto;
+            
+            .form-label {
+                vertical-align: text-top;
+                width: 24%;
+                margin: 0 7px 0 0;
             }
+            .form-label-for {
+                vertical-align: top;
+                display: inline-block;
+                width: 70%;
 
-            textarea {
-                resize: vertical;
-            }
+                .form-control {
+                    width: 80%;
 
-            label.addon {
-                vertical-align: bottom;
-                margin: 0 0 0 10px;
-                padding: 0;
-                font-size: 20px;
-
-                span {
-                    &:hover {
-                        color: red;
-                        cursor: pointer;
+                    &:focus {
+                        /* something like this was already in place: */
+                        box-shadow: inset 0 1px 2px rgba(0,0,0,0.4),
+                                    0 0 0 1px rgba(109,179,253,0.8);
+                        transition: box-shadow 250ms ease-out;
                     }
-                    &:active {
-                        color: lightblue;
+                }
+
+                textarea {
+                    resize: vertical;
+                }
+
+                label.addon {
+                    vertical-align: bottom;
+                    margin: 0 0 0 10px;
+                    padding: 0;
+                    font-size: 20px;
+
+                    span {
+                        &:hover {
+                            color: red;
+                            cursor: pointer;
+                        }
+                        &:active {
+                            color: lightblue;
+                        }
                     }
                 }
             }

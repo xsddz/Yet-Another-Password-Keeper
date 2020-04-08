@@ -1,7 +1,11 @@
 import * as React from 'react';
 
 interface AppLeftBarProps {
+    addButtonClickCallback?: CallableFunction
+    itemClickCallback?: CallableFunction
+    searchCallback?: CallableFunction
     searchText?: string
+    addButtonActive?: boolean
     passList?: {}[]
 }
 
@@ -13,17 +17,26 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
         super(props);
     }
 
-    searchChange = (e) => {
-        console.log(e, this);
+    searchInputChange = (e) => {
+        // console.log(e.target.value, e, this);
+        this.props.searchCallback(e.target.value);
     }
 
-    renderListItem(itemID, itemIcon, itemTitle, itemDesc){
+    listItemClick = (e) => {
+        this.props.itemClickCallback(e.currentTarget.dataset.id)
+    }
+
+    addButtonClick = (e) => {
+        this.props.addButtonClickCallback(this.props.addButtonActive)
+    }
+
+    renderListItem(itemID, itemIcon, itemTitle, itemDesc) {
         return (
-            <li key={itemID} className="list-group-item">
+            <li key={itemID} data-id={itemID} onClick={this.listItemClick} className="list-group-item">
                 <img className="img-circle media-object pull-left" src={itemIcon} width="32" height="32" />
                 <div className="media-body">
                     <strong>{itemTitle}</strong>
-                    <p>{itemDesc}</p>
+                    <p><small>{itemDesc}</small></p>
                 </div>
             </li>
         );
@@ -36,11 +49,11 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
                     <div className="toolbar-actions">
                         <div className="form-icon-text-group">
                             <span className="icon icon-search"></span>
-                            <input type="search" value={this.props.searchText} onChange={this.searchChange} className="form-control" placeholder="Search..." />
+                            <input type="search" value={this.props.searchText} onChange={this.searchInputChange} className="form-control" placeholder="Search..." />
                         </div>
 
                         <div className="btn-group pull-right">
-                            <button className="btn btn-mini btn-default active">
+                            <button onClick={this.addButtonClick} className={this.props.addButtonActive ? "btn btn-mini btn-default active" : "btn btn-mini btn-default"}>
                                 <span className="icon icon-plus"></span>
                             </button>
                             <button className="btn btn-mini btn-default">
@@ -50,10 +63,9 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
                     </div>
                 </header>
                 <ul className="list-group">
-                    {this.props.passList.map((item) => this.renderListItem(item["id"], item["icon"], item["title"], item["desc"]) )}
+                    {this.props.passList.map((item) => this.renderListItem(item["id"], item["icon"], item["title"], "更新于 " + item["updated_at"]) )}
                 </ul>
             </div>
-            
         )
     }
 }

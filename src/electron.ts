@@ -27,46 +27,41 @@ function createWindow() {
     // 打开开发者工具
     mainWindow.webContents.openDevTools()
 
-    // for test ...
-    // passDB.AddPassRecord({ title: "脉送" }).then(function(result) {
-    //     console.log("=====addrecord: " + result)
-    // });
-    // passDB.SearchPassRecord("").then(function (rows) {
-    //     console.log("=====searchrecord: ")
-    //     console.log(rows)
-    // });
-    // passDB.SearchPassRecord("脉").then(function (rows) {
-    //     console.log("=====searchrecord: ")
-    //     console.log(rows)
-    // });
-    // passDB.SearchPassRecord("脉动").then(function (rows) {
-    //     console.log("=====searchrecord: ")
-    //     console.log(rows)
-    // });
+    // ipc on
     ipcMain.on("addPassRecord", function(evt, data) {
-        console.log("=======addPassRecord:")
+        // console.log("=======addPassRecord:")
         // console.log(evt)
-        console.log(data)
+        // console.log(data)
 
         passDB.AddPassRecord(data).then(function (result) {
-            console.log("=====addrecord: " + result)
-        });
-        
-        passDB.SearchPassRecord(data["title"]).then(function (rows) {
-            console.log("=====searchrecord: ")
-            console.log(rows)
-
-            mainWindow.webContents.send("passlist", rows);
+            // console.log("=====addrecord: " + result)
         });
     })
-    ipcMain.on("listPassRecord", function (evt, search) {
-        console.log("=======listPassRecord:")
+    ipcMain.on("updatePassRecord", function(evt, data) {
+        // console.log("=======updatePassRecord:")
         // console.log(evt)
-        console.log(search)
+        // console.log(data)
+
+        let updateRecordID = data["id"]
+        let updateRecordInfo = {
+            "title": data["title"],
+            "site_or_app": data["site_or_app"],
+            "login_name": data["login_name"],
+            "login_pass": data["login_pass"],
+            "remarks": data["remarks"],
+        }
+        passDB.UpdatePassRecordByID(updateRecordInfo, updateRecordID).then(function(result) {
+            // console.log("========update record: " + result)
+        })
+    })
+    ipcMain.on("listPassRecord", function (evt, search) {
+        // console.log("=======listPassRecord:")
+        // console.log(evt)
+        // console.log(search)
 
         passDB.SearchPassRecord(search).then(function (rows) {
-            console.log("=====searchrecord: ")
-            console.log(rows)
+            // console.log("=====searchrecord: ")
+            // console.log(rows)
 
             mainWindow.webContents.send("passlist", rows);
         });

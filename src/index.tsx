@@ -14,6 +14,7 @@ interface AppProps {
 
 interface AppState {
     search?: string
+    isAddPass?: boolean
     list?: {}[]
     passinfo?: {}
 }
@@ -24,6 +25,7 @@ class App extends React.Component<AppProps, AppState> {
 
         this.state = {
             search: "",
+            isAddPass: false,
             list: [],
             passinfo: {},
         }
@@ -57,12 +59,65 @@ class App extends React.Component<AppProps, AppState> {
         return cvs.toDataURL('image/jpeg', 1);
     }
 
-    // list pass info from db with the search text
-    listPass(search: string) {
+    prepareNewPass = (prevIsAddPass: boolean) => {
+        console.log("=======prepareNewPass: ")
         const app = this
 
+        if (prevIsAddPass) {
+            app.setState({
+                isAddPass: false,
+                passinfo: {},
+            });
+        } else {
+            app.setState({
+                isAddPass: true,
+                passinfo: {
+                    "id": 0,
+                    "title": "",
+                    "site_or_app": "",
+                    "login_name": "",
+                    "login_pass": "",
+                    "remarks": "",
+                },
+            });
+        }
+    }
+
+    listItemClick = (itemID: number) => {
+        console.log("=======listItemClick: " + itemID)
+        const app = this
+
+        app.setState(prevState => {
+            let iteminfo = {}
+            prevState.list.forEach((item) => {
+                if (item["id"] == itemID) {
+                    iteminfo = {
+                        "id": item["id"],
+                        "title": item["title"],
+                        "site_or_app": item["site_or_app"],
+                        "login_name": item["login_name"],
+                        "login_pass": item["login_pass"],
+                        "remarks": item["remarks"],
+                    };
+                    // todo: break
+                    // ...
+                }
+            });
+            return {
+                isAddPass: false,
+                passinfo: iteminfo,
+            };
+        });
+    }
+
+    // list pass info from db with the search text
+    listPass = (search: string) => {
+        console.log("====listPass: " + search)
+        const app = this
+        
         app.setState({
             search: search,
+            isAddPass: false,
             passinfo: {},
         });
 
@@ -88,6 +143,41 @@ class App extends React.Component<AppProps, AppState> {
         });
     }
 
+    savePass = (data) => {
+        console.log("====savePass: ");
+        // console.log(data);
+
+        if (data.id > 0) {
+            ipc.send("updatePassRecord", {
+                "id": data.id,
+                "title": data.title,
+                "site_or_app": data.siteOrApp,
+                "login_name": data.loginName,
+                "login_pass": data.loginPass,
+                "remarks": data.remarks,
+            });
+        } else {
+            ipc.send("addPassRecord", {
+                "title": data.title,
+                "site_or_app": data.siteOrApp,
+                "login_name": data.loginName,
+                "login_pass": data.loginPass,
+                "remarks": data.remarks,
+            });
+        }
+
+        this.listPass(data["title"])
+    }
+    savePassCancel = () => {
+        console.log("====savePassCancel: ")
+        const app = this
+
+        app.setState({
+            isAddPass: false,
+            passinfo: {},
+        });
+    }
+
     // After the component did mount, we set the state each second.
     componentDidMount() {
         // list all passwd record with empty search
@@ -100,10 +190,10 @@ class App extends React.Component<AppProps, AppState> {
                 <div className="window-content">
                     <div className="pane-group">
                         <div className="pane-one-third">
-                            <AppLeftContent searchText={this.state.search} passList={this.state.list} />
+                            <AppLeftContent addButtonClickCallback={this.prepareNewPass} itemClickCallback={this.listItemClick} searchCallback={this.listPass} searchText={this.state.search} addButtonActive={this.state.isAddPass} passList={this.state.list} />
                         </div>
                         <div className="pane sidebar">
-                            <AppRightContent passInfo={this.state.passinfo} />
+                            <AppRightContent key={this.state.passinfo["id"]} onSavePassCallback={this.savePass} onCancelSavePassCallback={this.savePassCancel} passinfo={this.state.passinfo} />
                         </div>
                     </div>
                 </div>
