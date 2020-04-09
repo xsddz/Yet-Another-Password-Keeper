@@ -6,6 +6,7 @@ interface AppLeftBarProps {
     searchCallback?: CallableFunction
     searchText?: string
     addButtonActive?: boolean
+    listItemIDActive?: number
     passList?: {}[]
 }
 
@@ -32,7 +33,7 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
 
     renderListItem(itemID, itemIcon, itemTitle, itemDesc) {
         return (
-            <li key={itemID} data-id={itemID} onClick={this.listItemClick} className="list-group-item">
+            <li key={itemID} data-id={itemID} onClick={this.listItemClick} className={this.props.listItemIDActive == itemID ? "list-group-item active" : "list-group-item"}>
                 <img className="img-circle media-object pull-left" src={itemIcon} width="32" height="32" />
                 <div className="media-body">
                     <strong>{itemTitle}</strong>

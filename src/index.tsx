@@ -15,6 +15,7 @@ interface AppProps {
 interface AppState {
     search?: string
     isAddPass?: boolean
+    whichListItemClick?: number
     list?: {}[]
     passinfo?: {}
 }
@@ -26,6 +27,7 @@ class App extends React.Component<AppProps, AppState> {
         this.state = {
             search: "",
             isAddPass: false,
+            whichListItemClick: 0,
             list: [],
             passinfo: {},
         }
@@ -66,11 +68,13 @@ class App extends React.Component<AppProps, AppState> {
         if (prevIsAddPass) {
             app.setState({
                 isAddPass: false,
+                whichListItemClick: 0,
                 passinfo: {},
             });
         } else {
             app.setState({
                 isAddPass: true,
+                whichListItemClick: 0,
                 passinfo: {
                     "id": 0,
                     "title": "",
@@ -105,6 +109,7 @@ class App extends React.Component<AppProps, AppState> {
             });
             return {
                 isAddPass: false,
+                whichListItemClick: itemID,
                 passinfo: iteminfo,
             };
         });
@@ -118,6 +123,7 @@ class App extends React.Component<AppProps, AppState> {
         app.setState({
             search: search,
             isAddPass: false,
+            whichListItemClick: 0,
             passinfo: {},
         });
 
@@ -174,6 +180,7 @@ class App extends React.Component<AppProps, AppState> {
 
         app.setState({
             isAddPass: false,
+            whichListItemClick: 0,
             passinfo: {},
         });
     }
@@ -190,7 +197,7 @@ class App extends React.Component<AppProps, AppState> {
                 <div className="window-content">
                     <div className="pane-group">
                         <div className="pane-one-third">
-                            <AppLeftContent addButtonClickCallback={this.prepareNewPass} itemClickCallback={this.listItemClick} searchCallback={this.listPass} searchText={this.state.search} addButtonActive={this.state.isAddPass} passList={this.state.list} />
+                            <AppLeftContent addButtonClickCallback={this.prepareNewPass} itemClickCallback={this.listItemClick} searchCallback={this.listPass} searchText={this.state.search} addButtonActive={this.state.isAddPass} listItemIDActive={this.state.whichListItemClick} passList={this.state.list} />
                         </div>
                         <div className="pane sidebar">
                             <AppRightContent key={this.state.passinfo["id"]} onSavePassCallback={this.savePass} onCancelSavePassCallback={this.savePassCancel} passinfo={this.state.passinfo} />
