@@ -22,6 +22,7 @@ for easily backup, app use local SQLite database file to store password info, so
 + [ ] need password when open app for security
 + [ ] app setting feature: database storage path, password salt, password export
 + [ ] encode password when save to database
++ [ ] ui for windows
 + [x] app release
 + [ ] github release app package
 
