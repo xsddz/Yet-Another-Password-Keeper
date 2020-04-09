@@ -1,7 +1,10 @@
 .DS_Store
 .cache
-npm-debug.log
 Thumbs.db
+
+yarn.lock
+package-lock.json
+npm-debug.log
 
 electron.js
 node_modules/

@@ -16,9 +16,6 @@
         "dist/**/*",
         "electron.js"
     ],
-    "directories": {
-      "output": "output"
-    },
     "mac": {
       "category": "public.app-category.productivity",
       "target": [
@@ -31,11 +28,14 @@
         "nsis",
         "zip"
       ]
+    },
+    "directories": {
+        "output": "output"
     }
   },
   "keywords": [],
   "author": "xsddz",
-  "license": "",
+  "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
