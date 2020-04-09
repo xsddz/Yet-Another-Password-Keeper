@@ -19,7 +19,11 @@ for easily backup, app use local SQLite database file to store password info, so
 + [ ] 密码展示处理、复制
 + [ ] when app start, before show react render page, it show index.html empty page first issue 
 + [ ] how to add perload.js
-+ [x] app打包
++ [ ] need password when open app for security
++ [ ] app setting feature: database storage path, password salt, password export
++ [ ] encode password when save to database
++ [x] app release
++ [ ] github release app package
 
 ### featrue
 
@@ -57,9 +61,11 @@ $ git clone https://github.com/xsddz/Yet-Another-Password-Keeper.git
 # 进入仓库
 $ cd Yet-Another-Password-Keeper
 # 安装依赖库
-$ npm install
+# $ npm install
+$ yarn
 # 运行应用
-$ npm start
+# $ npm start
+$ yarn start
 ```
 
 目录结构如下：
