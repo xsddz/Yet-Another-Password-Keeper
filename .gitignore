@@ -4,6 +4,8 @@ Thumbs.db
 
 yarn.lock
 package-lock.json
+
+yarn-error.log
 npm-debug.log
 
 electron.js

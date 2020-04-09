@@ -35,7 +35,7 @@ function createWindow() {
     mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
     // 打开开发者工具
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     // ipc on
     ipcMain.on("addPassRecord", function(evt, data) {

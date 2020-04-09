@@ -13,8 +13,8 @@
   "build": {
     "appId": "org.dingzhihao.yet-another-password-keeper",
     "files": [
-        "dist/**/*",
-        "electron.js"
+      "dist/**/*",
+      "electron.js"
     ],
     "mac": {
       "category": "public.app-category.productivity",
@@ -30,7 +30,7 @@
       ]
     },
     "directories": {
-        "output": "output"
+      "output": "output"
     }
   },
   "keywords": [],

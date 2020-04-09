@@ -121,3 +121,4 @@ Yet-Another-Password-Keeper
 + [javascript Date format(js日期格式化)](https://www.cnblogs.com/zhangpengshou/archive/2012/07/19/2599053.html)
 + [UL or DIV vertical scrollbar](https://stackoverflow.com/questions/4102832/ul-or-div-vertical-scrollbar/4102846)
 + [electron-with-sqlite3](https://github.com/tarikguney/electron-with-sqlite3/blob/master/index.js)，[__dirname returns '/' when js file is built with webpack](https://github.com/webpack/webpack/issues/1599#issuecomment-186841345)
++ 项目集成knex和sqlite3并完成开发之后，打包后的app启动时，提示找不到knex等模块，从 npm 命令迁移至 yarn 之后（收到一些文章，说 yarn 解决了 npm 的诸多问题），重新打包，问题居然解决了。[从 npm 迁移到 yarn](https://classic.yarnpkg.com/zh-Hans/docs/migrating-from-npm/)，[yarn 快速入门](https://yarn.bootcss.com/docs/getting-started/)
