@@ -6,21 +6,15 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "build": "webpack --config ./webpack.config.js",
-    "start": "npm run build && electron .",
+    "start": "yarn run build && electron .",
     "pack": "electron-builder --dir --mac --win --x64",
     "dist": "electron-builder --mac --win --x64"
   },
   "build": {
     "appId": "org.dingzhihao.yet-another-password-keeper",
     "files": [
-      "**/*",
-      "!**/._*",
-      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
-      "!**/{package.json,package-lock.json,tsconfig.json,webpack.conf.js}",
-      "!src/",
-      "!output/",
-      "!node_modules/*",
-      "node_modules/knex"
+        "dist/**/*",
+        "electron.js"
     ],
     "directories": {
       "output": "output"
