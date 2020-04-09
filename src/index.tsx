@@ -6,8 +6,7 @@ import AppRightContent from './components/appRightContent';
 import './css/photon.min.css';
 import './css/index.scss';
 
-const electron = require("electron");
-const ipc = electron.ipcRenderer;
+const ipc = require("electron").ipcRenderer;
 
 interface AppProps {
 }

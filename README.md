@@ -17,6 +17,8 @@ for easily backup, app use local SQLite database file to store password info, so
 + [x] Electron主进程和渲染进程通信
 + [x] 添加、修改、展示、~~删除~~
 + [ ] 密码展示处理、复制
++ [ ] when app start, before show react render page, it show index.html empty page first issue 
++ [ ] how to add perload.js
 + [x] app打包
 
 ### featrue
@@ -104,7 +106,7 @@ Yet-Another-Password-Keeper
 + [Invalid Hook Call Warning](https://reactjs.org/warnings/invalid-hook-call-warning.html)
 + [npn install 卡住](https://github.com/electron/electron/issues/20841)，[electron-download](https://www.npmjs.com/package/electron-download)
 + [npm --save-dev --save 的区别](https://segmentfault.com/a/1190000010686415)
-+ [Electron 使用 Webpack2 打包应用程序](https://www.jianshu.com/p/fa54b3325fb1)，[Electron-builder打包应用程序策略](https://www.cnblogs.com/leejay6567/p/10092962.html)，[File Patterns](https://www.electron.build/file-patterns)，[Multi Platform Build](https://www.electron.build/multi-platform-build)，[你不知道的 Electron (二)：了解 Electron 打包](https://imweb.io/topic/5b6817b5f6734fdf12b4b09c)，[electron-builder打包见解](https://segmentfault.com/a/1190000016695922)
++ [Electron 使用 Webpack2 打包应用程序](https://www.jianshu.com/p/fa54b3325fb1)，[Electron-builder打包应用程序策略](https://www.cnblogs.com/leejay6567/p/10092962.html)，[File Patterns](https://www.electron.build/file-patterns)，[Multi Platform Build](https://www.electron.build/multi-platform-build)，[你不知道的 Electron (二)：了解 Electron 打包](https://imweb.io/topic/5b6817b5f6734fdf12b4b09c)，[electron-builder打包见解](https://segmentfault.com/a/1190000016695922)，[Mac: "your.app.category.type" ??](https://github.com/electron-userland/electron-builder/issues/836)，[LSApplicationCategoryType](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW8)
 + [Loading Fonts with webpack](https://chriscourses.com/blog/loading-fonts-webpack)
 + [Loading Images](https://webpack.js.org/guides/asset-management/#loading-images)，[typescript项目中import 图片时报错：TS2307: Cannot find module ‘...’](https://www.cnblogs.com/chen-cong/p/10445635.html)
 + [Form Inputs with inset icons](https://github.com/connors/photon/issues/14)，[sass-loader](https://webpack.js.org/loaders/sass-loader/)
@@ -118,3 +120,4 @@ Yet-Another-Password-Keeper
 + [React onClick get li clicked](https://www.freecodecamp.org/forum/t/react-onclick-get-li-clicked-solved/68112)
 + [javascript Date format(js日期格式化)](https://www.cnblogs.com/zhangpengshou/archive/2012/07/19/2599053.html)
 + [UL or DIV vertical scrollbar](https://stackoverflow.com/questions/4102832/ul-or-div-vertical-scrollbar/4102846)
++ [electron-with-sqlite3](https://github.com/tarikguney/electron-with-sqlite3/blob/master/index.js)，[__dirname returns '/' when js file is built with webpack](https://github.com/webpack/webpack/issues/1599#issuecomment-186841345)

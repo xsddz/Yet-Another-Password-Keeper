@@ -3,7 +3,7 @@ const path = require('path')
 
 class PassDB {
     private knex;
-    private storageDBFile: string = 'mydb.sqlite';
+    private storageDBFile: string = 'passwd.db';
     private table: string = 'passwd';
 
     constructor(storagePath: string) {

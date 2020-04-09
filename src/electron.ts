@@ -1,4 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('path');
+const url = require('url');
+
 const { PassDB } = require('./modules/passdb')
 
 const documentPath = app.getPath("documents")
@@ -17,12 +20,19 @@ function createWindow() {
         maximizable: false,
         fullscreenable: false,
         webPreferences: {
-            nodeIntegration: true
-        }
+            nodeIntegration: true,
+        },
+        show: false,
     })
 
     // 并且为你的应用加载index.html
-    mainWindow.loadFile('dist/index.html')
+    // mainWindow.loadFile('dist/index.html')
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'dist/index.html'),
+        protocol: 'file',
+        slashes: true,
+    }));
+    mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
     // 打开开发者工具
     mainWindow.webContents.openDevTools()

@@ -2,9 +2,6 @@ import * as React from 'react';
 import Camera from './camera';
 import Desktop from './desktop';
 
-const electron = require("electron");
-const ipc = electron.ipcRenderer;
-
 interface AppRightBarProps {
     passwdInfo?: {}
     onSaveButtonCallback?: CallableFunction

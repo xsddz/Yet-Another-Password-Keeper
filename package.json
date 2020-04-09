@@ -1,7 +1,7 @@
 {
-  "name": "electron-app-demo",
+  "name": "yet-another-password-keeper",
   "version": "0.0.1",
-  "description": "an electron app demo.",
+  "description": "an password keeper app based on electron.",
   "main": "electron.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
@@ -11,7 +11,7 @@
     "dist": "electron-builder --mac --win --x64"
   },
   "build": {
-    "appId": "org.dingzhihao.electron-app-demo",
+    "appId": "org.dingzhihao.yet-another-password-keeper",
     "files": [
       "**/*",
       "!**/._*",
@@ -19,13 +19,14 @@
       "!**/{package.json,package-lock.json,tsconfig.json,webpack.conf.js}",
       "!src/",
       "!output/",
-      "!node_modules/*"
+      "!node_modules/*",
+      "node_modules/knex"
     ],
     "directories": {
       "output": "output"
     },
     "mac": {
-      "category": "your.app.category.type",
+      "category": "public.app-category.productivity",
       "target": [
         "dmg",
         "zip"
