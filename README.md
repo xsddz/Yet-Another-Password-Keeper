@@ -9,24 +9,40 @@ for easily backup, app use local SQLite database file to store password info, so
 
 ## TODO
 
-+ [✓][实现] 主框架
-+ [][实现] 页面设计细化、图标设计等
-+ [][实现] SQLite操作库
-+ [][实现] Electron主进程和渲染进程通信
-+ [][实现] 添加、修改、删除、展示密码
-+ [✓][实现] app打包
+### master
 
-+ [✓][功能调研] 视频采集
-+ [✓][功能调研] capture桌面
-+ [?][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
-+ [][功能调研] 音视频recorder、mixer、converter
-+ [][功能调研] 推流
++ [x] 主框架
++ [x] 页面设计细化、图标设计等
++ [x] SQLite操作库
++ [x] Electron主进程和渲染进程通信
++ [x] 添加、修改、展示、~~删除~~
++ [ ] 密码展示处理、复制
++ [x] app打包
 
-以上，功能调研部分，借助这里的环境进行试验，后续会删除。
+### featrue
+
+功能调研部分，借助这里的环境进行试验，后续会删除。
+
++ [x][功能调研] 视频采集
++ [x][功能调研] capture桌面
++ [x][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
++ [ ][功能调研] 音视频recorder、mixer、converter
++ [ ][功能调研] 推流
 
 ## 附件
 
-### 1 开发备忘录
+### 技术栈选型
+
+electron + typescript + react + sass + webpack
+
++ 为什么采用 typescript？
+  都说挺好的，毕竟有类型系统。
++ 为什么采用 react？
+  react刚出的时候，研究过，有一定的熟悉感；听人说react才是王道。
++ 为什么使用sass？
+  很早之前了解过一些，比起一点点写css，继承的写法，省心。
+
+### 开发备忘录
 
 ```
 # 克隆这仓库
@@ -60,14 +76,13 @@ Yet-Another-Password-Keeper
 │   └── index.tsx
 ├── tsconfig.json
 └── webpack.config.js
-
 ```
 
-### 2 How To Build An Electron App From Scratch
+### How To Build An Electron App From Scratch
 
 根据参考中的文章，一步一步操作。
 
-### 3 参考文章
+### 参考文章
 
 + [Electron 文档](https://www.electronjs.org/docs)
 + [Getting Started with Electron, Typescript, React and Webpack](https://www.sitepen.com/blog/getting-started-with-electron-typescript-react-and-webpack/)
