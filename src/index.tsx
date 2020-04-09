@@ -23,27 +23,60 @@ interface AppState {
 
 class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps) {
-        super(props)
+        super(props);
 
+        // init state
         this.state = {
             searchText: "",
             isAddButtonClick: false,
             clickedPasswdListItemID: 0,
             passwdList: [],
             passwdInfo: {},
-        }
+        };
     }
 
-    // After the component did mount, we set the state each second.
+    componentWillUnmount() {
+        console.log("======componentWillUnmount: ");
+        // remove passwdlist state change listener
+        ipc.removeListener("passwdList", this.setPasswdListState);
+    }
+
     componentDidMount() {
+        console.log("======componentDidMount: ");
+        // set passwdlist state change listener
+        ipc.on("passwdList", this.setPasswdListState);
+
         // list all passwd record with empty search
         this.listPasswd("");
     }
 
-    // for left content list passwd info from db with the search text
+    // set passwdList state when called
+    setPasswdListState = (evt, recordList) => {
+        console.log("======setPasswdListState: ");
+        // console.log(evt);
+        // console.log(recordList);
+        const app = this;
+
+        app.setState({
+            passwdList: recordList.map(function (item) {
+                return {
+                    "id": item["id"],
+                    "icon": app.genTextIcon([128, 128], item["title"]),
+                    "title": item["title"],
+                    "site_or_app": item["site_or_app"],
+                    "login_name": item["login_name"],
+                    "login_pass": item["login_pass"],
+                    "remarks": item["remarks"],
+                    "updated_at": item["updated_at"],
+                };
+            }),
+        });
+    }
+
+    // for left content: search passwd from db
     listPasswd = (searchText: string) => {
-        console.log("====listPasswd: " + searchText)
-        const app = this
+        console.log("======listPasswd: " + searchText);
+        const app = this;
 
         app.setState({
             searchText: searchText,
@@ -53,31 +86,12 @@ class App extends React.Component<AppProps, AppState> {
         });
 
         ipc.send("listPassRecord", searchText);
-        ipc.on("passlist", function (evt, recordList) {
-            // console.log(evt);
-            // console.log(recordList);
-
-            app.setState({
-                passwdList: recordList.map(function (item) {
-                    return {
-                        "id": item["id"],
-                        "icon": app.genTextIcon([128, 128], item["title"]),
-                        "title": item["title"],
-                        "site_or_app": item["site_or_app"],
-                        "login_name": item["login_name"],
-                        "login_pass": item["login_pass"],
-                        "remarks": item["remarks"],
-                        "updated_at": item["updated_at"],
-                    }
-                }),
-            });
-        });
     }
 
-    // for left content add button click
+    // for left content: add button click
     prepareNewPasswd = (prevAddButtonState: boolean) => {
-        console.log("=======prepareNewPasswd: ")
-        const app = this
+        console.log("======prepareNewPasswd: ");
+        const app = this;
 
         if (prevAddButtonState) {
             app.setState({
@@ -101,13 +115,13 @@ class App extends React.Component<AppProps, AppState> {
         }
     }
 
-    // for left content passwd list item click
+    // for left content: passwd list item click
     passwdListItemClick = (itemID: number) => {
-        console.log("=======passwdListItemClick: " + itemID)
-        const app = this
+        console.log("======passwdListItemClick: " + itemID);
+        const app = this;
 
         app.setState(prevState => {
-            let iteminfo = {}
+            let iteminfo = {};
             prevState.passwdList.forEach((item) => {
                 if (item["id"] == itemID) {
                     iteminfo = {
@@ -129,10 +143,11 @@ class App extends React.Component<AppProps, AppState> {
         });
     }
 
-    // for right content save button click
+    // for right content: save button click
     savePass = (data) => {
-        console.log("====savePass: ");
+        console.log("======savePass: ");
         // console.log(data);
+        const app = this;
 
         if (data.id > 0) {
             ipc.send("updatePassRecord", {
@@ -153,13 +168,13 @@ class App extends React.Component<AppProps, AppState> {
             });
         }
 
-        this.listPasswd(data["title"])
+        app.listPasswd(data["title"]);
     }
 
-    // for right content cancel button click
+    // for right content: cancel button click
     savePassCancel = () => {
-        console.log("====savePassCancel: ")
-        const app = this
+        console.log("======savePassCancel: ");
+        const app = this;
 
         app.setState({
             isAddButtonClick: false,

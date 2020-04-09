@@ -35,22 +35,22 @@ function createWindow() {
     mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
     // 打开开发者工具
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     // ipc on
     ipcMain.on("addPassRecord", function(evt, data) {
-        // console.log("=======addPassRecord:")
+        console.log("=======ipc:on:addPassRecord:")
         // console.log(evt)
-        // console.log(data)
+        console.log(data)
 
         passDB.AddPassRecord(data).then(function (result) {
-            // console.log("=====addrecord: " + result)
+            console.log("=======ipc:on:addPassRecord:Result: " + result)
         });
     })
     ipcMain.on("updatePassRecord", function(evt, data) {
-        // console.log("=======updatePassRecord:")
+        console.log("=======ipc:on:updatePassRecord:")
         // console.log(evt)
-        // console.log(data)
+        console.log(data)
 
         let updateRecordID = data["id"]
         let updateRecordInfo = {
@@ -61,19 +61,19 @@ function createWindow() {
             "remarks": data["remarks"],
         }
         passDB.UpdatePassRecordByID(updateRecordInfo, updateRecordID).then(function(result) {
-            // console.log("========update record: " + result)
+            console.log("=======ipc:on:updatePassRecord:Result: " + result)
         })
     })
     ipcMain.on("listPassRecord", function (evt, search) {
-        // console.log("=======listPassRecord:")
+        console.log("=======ipc:on:listPassRecord:")
         // console.log(evt)
-        // console.log(search)
+        console.log(search)
 
         passDB.SearchPassRecord(search).then(function (rows) {
-            // console.log("=====searchrecord: ")
+            console.log("=======ipc:on:listPassRecord:Result: " + rows.length)
             // console.log(rows)
 
-            mainWindow.webContents.send("passlist", rows);
+            mainWindow.webContents.send("passwdList", rows);
         });
     });
 }
