@@ -13,19 +13,19 @@ module.exports = [
                 use: [{ loader: 'ts-loader' }]
             }]
         },
-        target: 'node',
-        node: {
-            __dirname: false,
-            __filename: false,
-        },
-        externals: [nodeExternals()],
         resolve: {
             extensions: [".ts"]
         },
         output: {
             path: __dirname + '/',
             filename: 'electron.js'
-        }
+        },
+        target: 'node',
+        node: {
+            __dirname: false,
+            __filename: false,
+        },
+        externals: [nodeExternals()]
     },
     {
         mode: 'development',
