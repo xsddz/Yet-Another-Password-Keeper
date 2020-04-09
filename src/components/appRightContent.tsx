@@ -6,9 +6,9 @@ const electron = require("electron");
 const ipc = electron.ipcRenderer;
 
 interface AppRightBarProps {
-    onSavePassCallback?: CallableFunction
-    onCancelSavePassCallback?: CallableFunction
-    passinfo?: {}
+    passwdInfo?: {}
+    onSaveButtonCallback?: CallableFunction
+    onCancelButtonCallback?: CallableFunction
 }
 
 interface AppRightBarState {
@@ -33,12 +33,12 @@ export default class AppRightBar extends React.Component<AppRightBarProps, AppRi
         }
 
         this.state = {
-            id: asIntValue(props.passinfo["id"]),
-            title: asStringValue(props.passinfo["title"]),
-            siteOrApp: asStringValue(props.passinfo["site_or_app"]),
-            loginName: asStringValue(props.passinfo["login_name"]),
-            loginPass: asStringValue(props.passinfo["login_pass"]),
-            remarks: asStringValue(props.passinfo["remarks"]),
+            id: asIntValue(props.passwdInfo["id"]),
+            title: asStringValue(props.passwdInfo["title"]),
+            siteOrApp: asStringValue(props.passwdInfo["site_or_app"]),
+            loginName: asStringValue(props.passwdInfo["login_name"]),
+            loginPass: asStringValue(props.passwdInfo["login_pass"]),
+            remarks: asStringValue(props.passwdInfo["remarks"]),
         }
     } 
 
@@ -65,18 +65,18 @@ export default class AppRightBar extends React.Component<AppRightBarProps, AppRi
 
     onSavePass = (e) => {
         e.preventDefault();
-        this.props.onSavePassCallback(this.state)
+        this.props.onSaveButtonCallback(this.state)
     }
     onCancelSavePass = (e) => {
         e.preventDefault();
-        this.props.onCancelSavePassCallback()
+        this.props.onCancelButtonCallback()
     }
     onFormSubmit = (e) => {
         e.preventDefault();
     }
 
-    renderRecordForm() {
-        if (Object.keys(this.props.passinfo).length == 0) {
+    renderPasswdInfoForm() {
+        if (Object.keys(this.props.passwdInfo).length == 0) {
             return (
                 <section className="text-center">Enjoy Yourself.</section>
             );
@@ -145,7 +145,7 @@ export default class AppRightBar extends React.Component<AppRightBarProps, AppRi
                 <div className="sep20"></div>
                 <div className="sep20"></div>
                 <div className="sep10"></div>
-                {this.renderRecordForm()}
+                {this.renderPasswdInfoForm()}
                 <div className="sep10"></div>
                 <div className="sep20"></div>
                 <div className="sep20"></div>

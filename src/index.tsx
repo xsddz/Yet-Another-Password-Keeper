@@ -13,11 +13,13 @@ interface AppProps {
 }
 
 interface AppState {
-    search?: string
-    isAddPass?: boolean
-    whichListItemClick?: number
-    list?: {}[]
-    passinfo?: {}
+    // left content state
+    searchText: string
+    passwdList?: {}[]
+    isAddButtonClick: boolean
+    clickedPasswdListItemID?: number
+    // right content state
+    passwdInfo?: {}
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -25,12 +27,164 @@ class App extends React.Component<AppProps, AppState> {
         super(props)
 
         this.state = {
-            search: "",
-            isAddPass: false,
-            whichListItemClick: 0,
-            list: [],
-            passinfo: {},
+            searchText: "",
+            isAddButtonClick: false,
+            clickedPasswdListItemID: 0,
+            passwdList: [],
+            passwdInfo: {},
         }
+    }
+
+    // After the component did mount, we set the state each second.
+    componentDidMount() {
+        // list all passwd record with empty search
+        this.listPasswd("");
+    }
+
+    // for left content list passwd info from db with the search text
+    listPasswd = (searchText: string) => {
+        console.log("====listPasswd: " + searchText)
+        const app = this
+
+        app.setState({
+            searchText: searchText,
+            isAddButtonClick: false,
+            clickedPasswdListItemID: 0,
+            passwdInfo: {},
+        });
+
+        ipc.send("listPassRecord", searchText);
+        ipc.on("passlist", function (evt, recordList) {
+            // console.log(evt);
+            // console.log(recordList);
+
+            app.setState({
+                passwdList: recordList.map(function (item) {
+                    return {
+                        "id": item["id"],
+                        "icon": app.genTextIcon([128, 128], item["title"]),
+                        "title": item["title"],
+                        "site_or_app": item["site_or_app"],
+                        "login_name": item["login_name"],
+                        "login_pass": item["login_pass"],
+                        "remarks": item["remarks"],
+                        "updated_at": item["updated_at"],
+                    }
+                }),
+            });
+        });
+    }
+
+    // for left content add button click
+    prepareNewPasswd = (prevAddButtonState: boolean) => {
+        console.log("=======prepareNewPasswd: ")
+        const app = this
+
+        if (prevAddButtonState) {
+            app.setState({
+                isAddButtonClick: false,
+                clickedPasswdListItemID: 0,
+                passwdInfo: {},
+            });
+        } else {
+            app.setState({
+                isAddButtonClick: true,
+                clickedPasswdListItemID: 0,
+                passwdInfo: {
+                    "id": 0,
+                    "title": "",
+                    "site_or_app": "",
+                    "login_name": "",
+                    "login_pass": "",
+                    "remarks": "",
+                },
+            });
+        }
+    }
+
+    // for left content passwd list item click
+    passwdListItemClick = (itemID: number) => {
+        console.log("=======passwdListItemClick: " + itemID)
+        const app = this
+
+        app.setState(prevState => {
+            let iteminfo = {}
+            prevState.passwdList.forEach((item) => {
+                if (item["id"] == itemID) {
+                    iteminfo = {
+                        "id": item["id"],
+                        "title": item["title"],
+                        "site_or_app": item["site_or_app"],
+                        "login_name": item["login_name"],
+                        "login_pass": item["login_pass"],
+                        "remarks": item["remarks"],
+                    };
+                    // todo: break loop
+                }
+            });
+            return {
+                isAddButtonClick: false,
+                clickedPasswdListItemID: itemID,
+                passwdInfo: iteminfo,
+            };
+        });
+    }
+
+    // for right content save button click
+    savePass = (data) => {
+        console.log("====savePass: ");
+        // console.log(data);
+
+        if (data.id > 0) {
+            ipc.send("updatePassRecord", {
+                "id": data.id,
+                "title": data.title,
+                "site_or_app": data.siteOrApp,
+                "login_name": data.loginName,
+                "login_pass": data.loginPass,
+                "remarks": data.remarks,
+            });
+        } else {
+            ipc.send("addPassRecord", {
+                "title": data.title,
+                "site_or_app": data.siteOrApp,
+                "login_name": data.loginName,
+                "login_pass": data.loginPass,
+                "remarks": data.remarks,
+            });
+        }
+
+        this.listPasswd(data["title"])
+    }
+
+    // for right content cancel button click
+    savePassCancel = () => {
+        console.log("====savePassCancel: ")
+        const app = this
+
+        app.setState({
+            isAddButtonClick: false,
+            clickedPasswdListItemID: 0,
+            passwdInfo: {},
+        });
+    }
+
+    // render page
+    render() {
+        return (
+            <div className="window">
+                <div className="window-content">
+                    <div className="pane-group">
+                        <div className="pane-one-third">
+                            <AppLeftContent searchText={this.state.searchText} searchCallback={this.listPasswd} addButtonClickCallback={this.prepareNewPasswd} addButtonActive={this.state.isAddButtonClick} list={this.state.passwdList} listItemClickCallback={this.passwdListItemClick} activeListItemID={this.state.clickedPasswdListItemID} />
+                        </div>
+                        <div className="pane sidebar">
+                            <AppRightContent key={this.state.passwdInfo["id"]} passwdInfo={this.state.passwdInfo} onSaveButtonCallback={this.savePass} onCancelButtonCallback={this.savePassCancel} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     // generate icon based on first char of string s
@@ -59,153 +213,6 @@ class App extends React.Component<AppProps, AppState> {
         ctx.fillText(s.substring(1, 0), size[0] / 2, size[1] / 2);
 
         return cvs.toDataURL('image/jpeg', 1);
-    }
-
-    prepareNewPass = (prevIsAddPass: boolean) => {
-        console.log("=======prepareNewPass: ")
-        const app = this
-
-        if (prevIsAddPass) {
-            app.setState({
-                isAddPass: false,
-                whichListItemClick: 0,
-                passinfo: {},
-            });
-        } else {
-            app.setState({
-                isAddPass: true,
-                whichListItemClick: 0,
-                passinfo: {
-                    "id": 0,
-                    "title": "",
-                    "site_or_app": "",
-                    "login_name": "",
-                    "login_pass": "",
-                    "remarks": "",
-                },
-            });
-        }
-    }
-
-    listItemClick = (itemID: number) => {
-        console.log("=======listItemClick: " + itemID)
-        const app = this
-
-        app.setState(prevState => {
-            let iteminfo = {}
-            prevState.list.forEach((item) => {
-                if (item["id"] == itemID) {
-                    iteminfo = {
-                        "id": item["id"],
-                        "title": item["title"],
-                        "site_or_app": item["site_or_app"],
-                        "login_name": item["login_name"],
-                        "login_pass": item["login_pass"],
-                        "remarks": item["remarks"],
-                    };
-                    // todo: break
-                    // ...
-                }
-            });
-            return {
-                isAddPass: false,
-                whichListItemClick: itemID,
-                passinfo: iteminfo,
-            };
-        });
-    }
-
-    // list pass info from db with the search text
-    listPass = (search: string) => {
-        console.log("====listPass: " + search)
-        const app = this
-        
-        app.setState({
-            search: search,
-            isAddPass: false,
-            whichListItemClick: 0,
-            passinfo: {},
-        });
-
-        ipc.send("listPassRecord", search);
-        ipc.on("passlist", function (evt, recordList) {
-            // console.log(evt);
-            // console.log(recordList);
-
-            app.setState({
-                list: recordList.map(function(item) {
-                    return {
-                        "id": item["id"],
-                        "icon": app.genTextIcon([128, 128], item["title"]),
-                        "title": item["title"],
-                        "site_or_app": item["site_or_app"],
-                        "login_name": item["login_name"],
-                        "login_pass": item["login_pass"],
-                        "remarks": item["remarks"],
-                        "updated_at": item["updated_at"],
-                    }
-                }),
-            });
-        });
-    }
-
-    savePass = (data) => {
-        console.log("====savePass: ");
-        // console.log(data);
-
-        if (data.id > 0) {
-            ipc.send("updatePassRecord", {
-                "id": data.id,
-                "title": data.title,
-                "site_or_app": data.siteOrApp,
-                "login_name": data.loginName,
-                "login_pass": data.loginPass,
-                "remarks": data.remarks,
-            });
-        } else {
-            ipc.send("addPassRecord", {
-                "title": data.title,
-                "site_or_app": data.siteOrApp,
-                "login_name": data.loginName,
-                "login_pass": data.loginPass,
-                "remarks": data.remarks,
-            });
-        }
-
-        this.listPass(data["title"])
-    }
-    savePassCancel = () => {
-        console.log("====savePassCancel: ")
-        const app = this
-
-        app.setState({
-            isAddPass: false,
-            whichListItemClick: 0,
-            passinfo: {},
-        });
-    }
-
-    // After the component did mount, we set the state each second.
-    componentDidMount() {
-        // list all passwd record with empty search
-        this.listPass("");
-    }
-
-    render() {
-        return (
-            <div className="window">
-                <div className="window-content">
-                    <div className="pane-group">
-                        <div className="pane-one-third">
-                            <AppLeftContent addButtonClickCallback={this.prepareNewPass} itemClickCallback={this.listItemClick} searchCallback={this.listPass} searchText={this.state.search} addButtonActive={this.state.isAddPass} listItemIDActive={this.state.whichListItemClick} passList={this.state.list} />
-                        </div>
-                        <div className="pane sidebar">
-                            <AppRightContent key={this.state.passinfo["id"]} onSavePassCallback={this.savePass} onCancelSavePassCallback={this.savePassCancel} passinfo={this.state.passinfo} />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
     }
 }
 

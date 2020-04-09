@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 interface AppLeftBarProps {
-    addButtonClickCallback?: CallableFunction
-    itemClickCallback?: CallableFunction
-    searchCallback?: CallableFunction
     searchText?: string
+    searchCallback?: CallableFunction
+    addButtonClickCallback?: CallableFunction
     addButtonActive?: boolean
-    listItemIDActive?: number
-    passList?: {}[]
+    list?: {}[]
+    listItemClickCallback?: CallableFunction
+    activeListItemID?: number
 }
 
 interface AppLeftBarState {
@@ -24,7 +24,7 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
     }
 
     listItemClick = (e) => {
-        this.props.itemClickCallback(e.currentTarget.dataset.id)
+        this.props.listItemClickCallback(e.currentTarget.dataset.id)
     }
 
     addButtonClick = (e) => {
@@ -33,7 +33,7 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
 
     renderListItem(itemID, itemIcon, itemTitle, itemDesc) {
         return (
-            <li key={itemID} data-id={itemID} onClick={this.listItemClick} className={this.props.listItemIDActive == itemID ? "list-group-item active" : "list-group-item"}>
+            <li key={itemID} data-id={itemID} onClick={this.listItemClick} className={this.props.activeListItemID == itemID ? "list-group-item active" : "list-group-item"}>
                 <img className="img-circle media-object pull-left" src={itemIcon} width="32" height="32" />
                 <div className="media-body">
                     <strong>{itemTitle}</strong>
@@ -64,7 +64,7 @@ export default class AppLeftBar extends React.Component<AppLeftBarProps, AppLeft
                     </div>
                 </header>
                 <ul className="list-group">
-                    {this.props.passList.map((item) => this.renderListItem(item["id"], item["icon"], item["title"], "更新于 " + item["updated_at"]) )}
+                    {this.props.list.map((item) => this.renderListItem(item["id"], item["icon"], item["title"], "更新于 " + item["updated_at"]) )}
                 </ul>
             </div>
         )
