@@ -23,11 +23,11 @@ for easily backup, app use local SQLite database file to store password info, so
 
 功能调研部分，借助这里的环境进行试验，后续会删除。
 
-+ [x][功能调研] 视频采集
-+ [x][功能调研] capture桌面
-+ [x][功能调研] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
-+ [ ][功能调研] 音视频recorder、mixer、converter
-+ [ ][功能调研] 推流
++ [x] 视频采集
++ [x] capture桌面
++ [x] capture音频：同 capture桌面 功能，使用 Electron desktopCapturer 模块，这里没有试验
++ [ ] 音视频recorder、mixer、converter
++ [ ] 推流
 
 ## 附件
 
@@ -35,11 +35,16 @@ for easily backup, app use local SQLite database file to store password info, so
 
 electron + typescript + react + sass + webpack
 
-+ 为什么采用 typescript？
++ a. 为什么采用 typescript？
+
   都说挺好的，毕竟有类型系统。
-+ 为什么采用 react？
+
++ b. 为什么采用 react？
+
   react刚出的时候，研究过，有一定的熟悉感；听人说react才是王道。
-+ 为什么使用sass？
+
++ c. 为什么使用sass？
+
   很早之前了解过一些，比起一点点写css，继承的写法，省心。
 
 ### 开发备忘录
@@ -60,20 +65,23 @@ $ npm start
 ```
 Yet-Another-Password-Keeper
 ├── README.md
-├── node_modules
 ├── package-lock.json
 ├── package.json
 ├── src
 │   ├── components
-│   │   ├── appLeftBar.tsx
-│   │   ├── appRightBar.tsx
+│   │   ├── appLeftContent.tsx
+│   │   ├── appRightContent.tsx
 │   │   ├── camera.tsx
 │   │   └── desktop.tsx
 │   ├── css
-│   │   └── index.css
+│   ├── fonts
+│   ├── img
 │   ├── electron.ts
 │   ├── index.html
-│   └── index.tsx
+│   ├── index.tsx
+│   └── modules
+│       ├── images.d.ts
+│       └── passdb.ts
 ├── tsconfig.json
 └── webpack.config.js
 ```
