@@ -7,8 +7,12 @@
     "postinstall": "electron-builder install-app-deps",
     "build": "webpack --config ./webpack.config.js",
     "start": "yarn run build && electron .",
-    "pack": "electron-builder --dir --mac --win --x64",
-    "dist": "electron-builder --mac --win --x64"
+
+    "pack:mac64": "electron-builder install-app-deps --platform darwin --arch x64 && electron-builder --dir --mac --x64",
+    "dist:mac64": "electron-builder install-app-deps --platform darwin --arch x64 && electron-builder --mac --x64",
+    
+    "pack:win64": "electron-builder install-app-deps --platform win32 --arch x64 && electron-builder --dir --win --x64",
+    "dist:win64": "electron-builder install-app-deps --platform win32 --arch x64 && electron-builder --win --x64"
   },
   "build": {
     "appId": "org.dingzhihao.yet-another-password-keeper",
@@ -25,7 +29,7 @@
     },
     "win": {
       "target": [
-        "nsis",
+        "portable",
         "zip"
       ]
     },
