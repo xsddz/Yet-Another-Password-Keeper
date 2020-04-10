@@ -5,6 +5,8 @@
   "main": "electron.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
+    "postinstall:mac64": "electron-builder install-app-deps --platform darwin --arch x64",
+    "postinstall:win64": "electron-builder install-app-deps --platform win32 --arch x64",
     "build": "webpack --config ./webpack.config.js",
     "start": "yarn run build && electron .",
     "pack:mac64": "electron-builder --dir --mac --x64",
