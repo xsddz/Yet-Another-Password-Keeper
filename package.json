@@ -1,20 +1,16 @@
 {
   "name": "yet-another-password-keeper",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "an password keeper app based on electron.",
   "main": "electron.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "build": "webpack --config ./webpack.config.js",
     "start": "yarn run build && electron .",
-
-    "postrelease:mac64": "electron-builder install-app-deps --platform darwin --arch x64",
-    "pack:mac64": "yarn run postrelease:mac64 && yarn run build && electron-builder --dir --mac --x64",
-    "dist:mac64": "yarn run postrelease:mac64 && yarn run build && electron-builder --mac --x64",
-    
-    "postrelease:win64": "electron-builder install-app-deps --platform win32 --arch x64",
-    "pack:win64": "yarn run postrelease:win64 && yarn run build && electron-builder --dir --win --x64",
-    "dist:win64": "yarn run postrelease:win64 && yarn run build && electron-builder --win --x64"
+    "pack:mac64": "electron-builder --dir --mac --x64",
+    "dist:mac64": "electron-builder --mac --x64",
+    "pack:win64": "electron-builder --dir --win --x64",
+    "dist:win64": "electron-builder --win --x64"
   },
   "build": {
     "appId": "org.dingzhihao.yet-another-password-keeper",
@@ -31,7 +27,6 @@
     },
     "win": {
       "target": [
-        "portable",
         "zip"
       ]
     },
@@ -39,7 +34,11 @@
       "output": "output"
     }
   },
-  "keywords": [],
+  "keywords": [
+    "password",
+    "manager",
+    "keeper"
+  ],
   "author": "xsddz",
   "license": "MIT",
   "devDependencies": {
