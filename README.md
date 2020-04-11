@@ -9,6 +9,10 @@ for easily backup, app use local SQLite database file to store password info,
 so you can keep the database file anytime you want. and the file saved to
 `~/Document/yet-another-passowrd-keeper` by default.
 
+![](build/screen-capture.png)
+
+[download](https://github.com/xsddz/Yet-Another-Password-Keeper/releases)
+
 ## TODO
 
 ### main
