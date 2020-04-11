@@ -134,4 +134,4 @@ Yet-Another-Password-Keeper
 + [ipcRenderer in React component](https://stackoverflow.com/questions/41156945/ipcrenderer-in-react-component-constructor)
 + [使用keynote制作属于自己的logo，太简单了](https://www.jianshu.com/p/458cab3bfa52)、[keynote 如何修改幻灯片大小？](https://www.jianshu.com/p/fe7578c3da1f)
 + [NPM fails on msbuild.exe with exit code 1](https://github.com/nodejs/node-gyp/issues/119#issuecomment-331778053)、[gyp ERR! stack Error: `C:\Program Files (x86)\MSBuild\14.0\bin\msbuild.exe`](https://stackoverflow.com/questions/52089305/gyp-err-stack-error-c-program-files-x86-msbuild-14-0-bin-msbuild-exe)
-+ [终于学会了在github上创建一个release、tag了](https://blog.csdn.net/huyoo/article/details/50168067)
++ [github release 功能的使用及问题解决](https://blog.csdn.net/Eggy2015/article/details/52138751/)

@@ -46,7 +46,7 @@
             ]
         },
         "directories": {
-            "output": "releases"
+            "output": "output"
         }
     },
     "keywords": [
