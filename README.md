@@ -5,18 +5,20 @@ yet another passowrd keeper app based on Electron.
 
 for safe, app is opensource, so anyone can check the source code.
 
-for easily backup, app use local SQLite database file to store password info, so you can keep the database file anytime you want.
+for easily backup, app use local SQLite database file to store password info, 
+so you can keep the database file anytime you want. and the file saved to
+`~/Document/yet-another-passowrd-keeper` by default.
 
 ## TODO
 
-### master
+### main
 
 + [x] 主框架
 + [x] 页面设计细化、图标设计等
 + [x] SQLite操作库
 + [x] Electron主进程和渲染进程通信
 + [x] 添加、修改、展示、~~删除~~
-+ [ ] 密码展示处理、复制
++ [ ] password field show/copy logic
 + [ ] when app start, before show react render page, it show index.html empty page first issue 
 + [ ] how to add perload.js
 + [ ] need password when open app for security
@@ -36,7 +38,7 @@ for easily backup, app use local SQLite database file to store password info, so
 + [ ] 音视频recorder、mixer、converter
 + [ ] 推流
 
-## 附件
+## Reference
 
 ### 技术栈选型
 
@@ -99,7 +101,7 @@ Yet-Another-Password-Keeper
 
 根据参考中的文章，一步一步操作。
 
-### 参考文章
+### docs
 
 + [Electron 文档](https://www.electronjs.org/docs)
 + [Getting Started with Electron, Typescript, React and Webpack](https://www.sitepen.com/blog/getting-started-with-electron-typescript-react-and-webpack/)
@@ -130,3 +132,6 @@ Yet-Another-Password-Keeper
 + [electron-with-sqlite3](https://github.com/tarikguney/electron-with-sqlite3/blob/master/index.js)，[__dirname returns '/' when js file is built with webpack](https://github.com/webpack/webpack/issues/1599#issuecomment-186841345)
 + 项目集成knex和sqlite3并完成开发之后，打包后的app启动时，提示找不到knex等模块，从 npm 命令迁移至 yarn 之后（搜到一些文章，说 yarn 解决了 npm 的诸多问题，而且比 npm 要快、快），重新打包，问题居然解决了。[从 npm 迁移到 yarn](https://classic.yarnpkg.com/zh-Hans/docs/migrating-from-npm/)，[yarn 快速入门](https://yarn.bootcss.com/docs/getting-started/)
 + [ipcRenderer in React component](https://stackoverflow.com/questions/41156945/ipcrenderer-in-react-component-constructor)
++ [使用keynote制作属于自己的logo，太简单了](https://www.jianshu.com/p/458cab3bfa52)、[keynote 如何修改幻灯片大小？](https://www.jianshu.com/p/fe7578c3da1f)
++ [NPM fails on msbuild.exe with exit code 1](https://github.com/nodejs/node-gyp/issues/119#issuecomment-331778053)、[gyp ERR! stack Error: `C:\Program Files (x86)\MSBuild\14.0\bin\msbuild.exe`](https://stackoverflow.com/questions/52089305/gyp-err-stack-error-c-program-files-x86-msbuild-14-0-bin-msbuild-exe)
++ [终于学会了在github上创建一个release、tag了](https://blog.csdn.net/huyoo/article/details/50168067)
