@@ -30,7 +30,7 @@ so you can keep the database file anytime you want. and the file saved to
 + [ ] encode password when save to database
 + [ ] ui for windows
 + [x] app release
-+ [ ] github release app package
++ [x] github release app package
 
 ### featrue
 
