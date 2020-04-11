@@ -12,3 +12,7 @@ electron.js
 node_modules/
 dist/
 output/
+
+releases/.icon-icns/
+releases/mac/
+releases/builder-effective-config.yaml
